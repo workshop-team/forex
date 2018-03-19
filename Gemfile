@@ -12,7 +12,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
-gem 'rubocop'
+gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
@@ -22,8 +22,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'overcommit'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'overcommit', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
