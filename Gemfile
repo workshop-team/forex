@@ -19,6 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do
