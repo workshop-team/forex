@@ -12,6 +12,7 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'haml-rails', '~> 1.0'
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rubocop', require: false
