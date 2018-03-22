@@ -3,5 +3,4 @@
 # https://github.com/thuehlinger/daemons
 require 'daemons'
 
-Daemons.run('lib/forex.rb')
-# Daemons.run('forex2.rb')
+Daemons.run('forex_server/forex.rb')
