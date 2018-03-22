@@ -19,7 +19,15 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
+  gem 'awesome_print', require: false
+  gem 'factory_bot_rails', '~> 4.0'
   gem 'pry-byebug'
+  gem 'rspec-rails', '~> 3.7'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
