@@ -24,5 +24,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+.idea
+--git-common-dir
 
 /forex_server/forex.rb.pid
