@@ -26,3 +26,5 @@
 /config/master.key
 .idea
 --git-common-dir
+
+/forex_server/forex.rb.pid
