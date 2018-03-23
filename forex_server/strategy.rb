@@ -14,7 +14,7 @@ module ForexServer
     end
 
     def call
-      return unless refresh_strategy?
+      return unless refresh_strategy? && valid?
       @last_time = Time.now
 
       puts "-- Call strategy: #{@name}"
@@ -23,6 +23,10 @@ module ForexServer
 
     def refresh_strategy?
       @last_time + @time_range <= Time.now
+    end
+
+    def valid?
+      !@id.nil? && !@name.nil? && !@time_range.nil? && !@instrument.nil? && !@sl.nil?
     end
   end
 end
