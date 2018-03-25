@@ -5,6 +5,7 @@ require_relative 'data_collector'
 require_relative 'strategies'
 require_relative 'strategy_logic/strategy_logic1'
 require_relative 'manager'
+require_relative 'sql_manager'
 
 #### Start ####
 # Forex Server is automative started with Rails. But in development it's better to run it using CLI.

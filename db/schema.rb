@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_21_100941) do
+ActiveRecord::Schema.define(version: 2018_03_24_093954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "prices", force: :cascade do |t|
-    t.string "instrument"
-    t.decimal "ask"
-    t.decimal "bid"
-    t.datetime "time"
+    t.decimal "ask", null: false
+    t.decimal "bid", null: false
+    t.datetime "time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "instrument", null: false
   end
 
 end
