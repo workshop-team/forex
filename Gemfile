@@ -22,7 +22,7 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'awesome_print', require: false
+  gem 'awesome_print'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'haml_lint', '~> 0.27.0', require: false
   gem 'pry-byebug'
