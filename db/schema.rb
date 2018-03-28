@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_28_073953) do
+ActiveRecord::Schema.define(version: 2018_03_28_081515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 2018_03_28_073953) do
     t.integer "instrument", null: false
   end
 
+  create_table "strategies", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "time_range", null: false
+    t.bigint "instrument_id"
+    t.bigint "strategy_logic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instrument_id"], name: "index_strategies_on_instrument_id"
+    t.index ["strategy_logic_id"], name: "index_strategies_on_strategy_logic_id"
+  end
+
   create_table "strategy_logics", force: :cascade do |t|
     t.string "class_name", null: false
     t.string "label", null: false
@@ -38,4 +49,6 @@ ActiveRecord::Schema.define(version: 2018_03_28_073953) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "strategies", "instruments"
+  add_foreign_key "strategies", "strategy_logics"
 end
