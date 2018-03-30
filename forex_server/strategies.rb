@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'strategy'
+require_relative 'sql/strategies_sql'
 
 module ForexServer
   class Strategies
@@ -22,16 +23,19 @@ module ForexServer
     end
 
     def init_data
-      # this data will be fetched from the database
-      sl1 = Object.const_get('ForexServer::StrategyLogic1').new
+      results = ForexServer::SqlManager.instance.call(
+        ForexServer::StrategiesSql.strategies
+      )
 
-      s1 = ForexServer::Strategy.new(id: 1, name: 'Strategia 1', time_range: 20, instrument: 'eur_usd', sl: sl1)
-      s2 = ForexServer::Strategy.new(id: 2, name: 'Strategia 2', time_range: 5, instrument: 'usd_eur', sl: sl1)
-      s3 = ForexServer::Strategy.new(id: 3, name: 'Strategia 3', time_range: 15, instrument: 'eur_pl', sl: sl1)
+      results.each do |result|
+        result.transform_keys!(&:to_sym)
+        strategy_logic = Object.const_get("ForexServer::#{result[:class_name]}").new
+        result[:strategy_logic] = strategy_logic
 
-      @strategies << s1
-      @strategies << s2
-      @strategies << s3
+        strategy = ForexServer::Strategy.new(result)
+
+        @strategies << strategy
+      end
     end
   end
 end
