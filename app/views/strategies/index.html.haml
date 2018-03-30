@@ -1,0 +1,27 @@
+%h1 Listing strategies
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th{ scope: 'col' } Name
+      %th{ scope: 'col' } Time range
+      %th{ scope: 'col' } Instrument
+      %th{ scope: 'col' } Strategy Logic
+      %th{ scope: 'col' }
+      %th{ scope: 'col' }
+      %th{ scope: 'col' }
+
+  %tbody
+    - @strategies.each do |strategy|
+      %tr
+        %td= strategy.name
+        %td= strategy.time_range
+        %td= strategy.instrument.name
+        %td= strategy.strategy_logic.label
+        %td= link_to 'Show', strategy
+        %td= link_to 'Edit', edit_strategy_path(strategy)
+        %td= link_to 'Destroy', strategy, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Strategy', new_strategy_path

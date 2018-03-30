@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @strategy.name
+%p
+  %b Time range:
+  = @strategy.time_range
+
+= link_to 'Edit', edit_strategy_path(@strategy)
+\|
+= link_to 'Back', strategies_path
