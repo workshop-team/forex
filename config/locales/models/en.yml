@@ -1,0 +1,30 @@
+en:
+  activerecord:
+    models:
+      strategy:
+        one: 'Strategy'
+        other: 'Strategies'
+      instrument:
+        one: 'Instrument'
+        other: 'Instruments'
+      price:
+        one: 'Price'
+        other: 'Prices'
+      strategy_logic:
+        one: 'Strategy logic'
+        other: 'Strategy logics'
+
+    attributes:
+      streategy:
+        name: 'Name'
+        time_range: 'Time range'
+      instrument:
+        name: 'Name'
+        label: 'Label'
+      price:
+        ask: 'Ask'
+        bit: 'Bit'
+        time: 'Time'
+      strategy_logic:
+        class_name: 'Class name'
+        label: 'Label'

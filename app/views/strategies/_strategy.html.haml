@@ -1,0 +1,8 @@
+%tr
+  %td= strategy.name
+  %td= strategy.time_range
+  %td= strategy.instrument.name
+  %td= strategy.strategy_logic.label
+  %td= link_to t('see'), strategy
+  %td= link_to t('edit'), edit_strategy_path(strategy)
+  %td= link_to t('destroy'), strategy, method: :delete, data: { confirm: t('are_you_sure') }
