@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
   def send_notification
     return unless token_ok?(params[:token])
 
-    notification_params = params.require(:request).permit(:info, :type, :token)
+    notification_params = params.permit(:info, :type, :token)
 
     info = notification_params[:info]
     type = notification_params[:type]
