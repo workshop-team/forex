@@ -14,7 +14,7 @@ module ForexServer
     def call(query, params = [])
       @con.exec_params(query, params)
     rescue PG::Error => e
-      ForexServer::Logger.instance.save(e.message, 'error')
+      ForexServer::Logger.instance.call(e.message, 'error')
       puts e.message
       []
     end
