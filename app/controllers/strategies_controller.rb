@@ -15,7 +15,7 @@ class StrategiesController < ApplicationController
     @strategy = Strategy.new(strategy_params)
 
     if @strategy.save
-      redirect_to @strategy, notice: 'Strategy was successfully created.'
+      redirect_to @strategy, notice: I18n.t('message_of_addition')
     else
       render :new
     end
@@ -23,7 +23,7 @@ class StrategiesController < ApplicationController
 
   def update
     if @strategy.update(strategy_params)
-      redirect_to @strategy, notice: 'Strategy was successfully updated.'
+      redirect_to @strategy, notice: I18n.t('message_of_modification')
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class StrategiesController < ApplicationController
 
   def destroy
     @strategy.destroy
-    redirect_to strategies_url, notice: 'Strategy was successfully destroyed.'
+    redirect_to strategies_url, notice: I18n.t('message_of_deletion')
   end
 
   private

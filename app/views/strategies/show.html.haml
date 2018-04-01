@@ -1,9 +1,15 @@
 %p
-  %b Name:
+  %b= Strategy.model_name.human
   = @strategy.name
 %p
-  %b Time range:
+  %b= Strategy.human_attribute_name :time_range
   = @strategy.time_range
+%p
+  %b= Instrument.model_name.human
+  = @strategy.instrument.name
+%p
+  %b= StrategyLogic.model_name.human
+  = @strategy.strategy_logic.label
 
 = link_to t('edit'), edit_strategy_path(@strategy)
 \|
