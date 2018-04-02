@@ -2,14 +2,14 @@
 
 module ForexServer
   class Strategy
-    attr_reader :id, :name, :time_range, :instrument, :last_time, :sl
+    attr_reader :id, :name, :time_range, :instrument, :last_time, :strategy_logic
 
     def initialize(options = {})
       @id = options.fetch(:id, nil)
-      @name = options.fetch(:name, nil)
-      @time_range = options.fetch(:time_range, nil)
-      @instrument = options.fetch(:instrument, nil)
-      @sl = options.fetch(:sl, nil)
+      @name = options.fetch(:strategy_name, nil)
+      @time_range = options.fetch(:time_range, nil).to_i
+      @instrument = options.fetch(:instrument_name, nil)
+      @strategy_logic = options.fetch(:strategy_logic, nil)
       @last_time = Time.now
     end
 
@@ -18,7 +18,7 @@ module ForexServer
       @last_time = Time.now
 
       puts "-- Call strategy: #{@name}"
-      @sl.call(self)
+      @strategy_logic.call(self)
     end
 
     def refresh_strategy?
@@ -26,7 +26,7 @@ module ForexServer
     end
 
     def valid?
-      !@id.nil? && !@name.nil? && !@time_range.nil? && !@instrument.nil? && !@sl.nil?
+      !@id.nil? && !@name.nil? && !@time_range.nil? && !@instrument.nil? && !@strategy_logic.nil?
     end
   end
 end
