@@ -1,0 +1,9 @@
+= simple_form_for(@strategy) do |f|
+  .form-inputs
+    = f.input :name
+    = f.input :time_range
+    = f.association :instrument
+    = f.association :strategy_logic, label_method: :label
+
+  .form-actions
+    = f.button :submit

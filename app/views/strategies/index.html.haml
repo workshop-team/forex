@@ -1,0 +1,15 @@
+= link_to t('add_new'), new_strategy_path, class: 'btn btn-primary'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th{ scope: 'col' }= Strategy.model_name.human
+      %th{ scope: 'col' }= Strategy.human_attribute_name :time_range
+      %th{ scope: 'col' }= Instrument.model_name.human
+      %th{ scope: 'col' }= StrategyLogic.model_name.human
+      %th{ scope: 'col' }
+      %th{ scope: 'col' }
+      %th{ scope: 'col' }
+
+  %tbody
+    = render @strategies
