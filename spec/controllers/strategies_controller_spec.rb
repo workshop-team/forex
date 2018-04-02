@@ -18,11 +18,13 @@ RSpec.describe StrategiesController, type: :controller do
       get :index
       expect(response).to have_http_status(200)
     end
+
     it 'populates an array of strategies' do
       strategy = create(:strategy)
       get :index
       expect(assigns(:strategies)).to eq([strategy])
     end
+
     it 'renders the index template' do
       get :index
       expect(response).to render_template('index')
@@ -32,14 +34,14 @@ RSpec.describe StrategiesController, type: :controller do
   describe 'GET #new' do
     it 'returns http success' do
       get :new
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
   describe 'GET #edit' do
     it 'returns http success' do
       get :edit, params: { id: strategy }
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 end
