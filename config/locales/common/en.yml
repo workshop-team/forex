@@ -2,7 +2,6 @@ en:
   message_of_addition: 'Record has been saved'
   message_of_modification: 'Record has been changed'
   message_of_deletion: 'Record has been deleted'
-  message_of_deletion_fail: 'Record has not been deleted'
   choose_option: 'Choice from list'
   are_you_sure: 'Are you sure?'
   add_new: 'Add new Item'
