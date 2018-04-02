@@ -34,6 +34,7 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 3.1'
 end
 
