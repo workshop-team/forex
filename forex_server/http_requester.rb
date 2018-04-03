@@ -15,11 +15,17 @@ module ForexServer
     end
 
     def get(url, params)
-      HTTP.get(url, params: params)
+      handle_error { HTTP.get(url, params: params) }
     end
 
     def post(url, params)
-      HTTP.post(url, params: params)
+      handle_error { HTTP.post(url, params: params) }
+    end
+
+    def handle_error
+      yield
+    rescue HTTP::ConnectionError => e
+      puts e.message
     end
   end
 end
