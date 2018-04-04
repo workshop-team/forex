@@ -14,6 +14,8 @@ require_relative 'http_requester'
 # ruby forex_server/forex_daemon.rb run
 # ruby forex_server/forex_daemon.rb run | stop | start | status
 
+ForexServer::Logger.instance.call('+++ Forex Server started +++')
+
 data_collector = ForexServer::DataCollector.new
 strategies = ForexServer::Strategies.new
 manager = ForexServer::Manager.new(strategies)
