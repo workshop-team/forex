@@ -17,11 +17,10 @@ require_relative 'http_requester'
 ForexServer::Logger.instance.call('+++ Forex Server started +++')
 
 data_collector = ForexServer::DataCollector.new
-strategies = ForexServer::Strategies.new
-manager = ForexServer::Manager.new(strategies)
+manager = ForexServer::Manager.new
 
 ForexServer::Heart.new(5) do
   data_collector.save
   manager.call
-  strategies.call
+  ForexServer::Strategies.instance.call
 end
