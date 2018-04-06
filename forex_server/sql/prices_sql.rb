@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ForexServer
-  class DataCollectorSql
+  class PricesSql
     def self.insert_price
       <<-QUERY
         INSERT INTO prices

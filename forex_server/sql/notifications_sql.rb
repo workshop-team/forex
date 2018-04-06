@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ForexServer
-  class LoggerSql
+  class NotificationsSql
     def self.insert_notification
       <<-QUERY
         INSERT INTO notifications (kind, info, created_at, updated_at)
