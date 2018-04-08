@@ -1,9 +1,2 @@
 %nav.col-sm-3.col-md-2.hidden-xs-down.bg-faded.sidebar
-  %p.text-success Info - text
-  %p.text-warning Warning - text
-  %p.text-danger Error - text
-  - @notifications.each do |note|
-    %p.dupa
-      = note.kind
-      = note.info
-
+  = render notifications
