@@ -2,7 +2,8 @@
 
 class ApplicationController < ActionController::Base
   before_action :note
+
   def note
-    @notifications = Notification.last(20)
+    @notifications = Notification.order(created_at: :desc).limit(20)
   end
 end
