@@ -15,7 +15,7 @@ class StrategiesController < ApplicationController
     @strategy = Strategy.new(strategy_params)
 
     if @strategy.save
-      Command.create(name: 'add_strategy', params: { id: @strategy.id })
+      Command.create(name: 'add_strategy', params: @strategy)
       redirect_to @strategy, notice: t('message_of_addition')
     else
       render :new
@@ -24,7 +24,7 @@ class StrategiesController < ApplicationController
 
   def update
     if @strategy.update(strategy_params)
-      Command.create(name: 'edit_strategy', params: { id: @strategy.id })
+      Command.create(name: 'edit_strategy', params: @strategy)
       redirect_to @strategy, notice: t('message_of_modification')
     else
       render :edit
@@ -33,7 +33,7 @@ class StrategiesController < ApplicationController
 
   def destroy
     @strategy.destroy
-    Command.create(name: 'destroy_strategy', params: { id: @strategy.id })
+    Command.create(name: 'destroy_strategy', params: @strategy)
     redirect_to strategies_url, notice: t('message_of_deletion')
   end
 
