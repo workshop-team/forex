@@ -9,15 +9,15 @@ module ForexServer
 
     URL = 'http://localhost:3000/requests/send_notification'
 
-    def call(info, type = 'info')
+    def call(info, kind = 'info')
       current_time = Time.now
 
       ForexServer::SqlManager.instance.call(
         ForexServer::NotificationsSql.insert_notification,
-        [type, info, current_time, current_time]
+        [kind, info, current_time, current_time]
       )
 
-      ForexServer::HttpRequester.instance.call('post', URL, info: info, type: type)
+      ForexServer::HttpRequester.instance.call('post', URL, info: info, kind: kind)
     end
   end
 end

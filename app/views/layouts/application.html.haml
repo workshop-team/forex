@@ -12,8 +12,11 @@
     %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }
   %body
     = render 'layouts/header'
-    %main.container{ role: 'main' }
-      = render 'layouts/flash_messages'
-      = yield
+    .container-fluid
+      .row
+        = render 'layouts/notification_sidebar'
+        %main.col-sm-9.offset-sm-3.col-md-10.offset-md-2.pt-3
+          = render 'layouts/flash_messages'
+          = yield
     = render 'layouts/footer'
 
