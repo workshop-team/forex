@@ -18,8 +18,9 @@ module ForexServer
     def add_strategy(params, command_id)
       puts '--- Add strategy'
 
-      command_executor(command_id, 'New Strategy added successfully') do
-        ForexServer::Strategies.instance.add(JSON.parse(params)['id'])
+      notification = "Strategy >>> #{json(params)['name']} <<< added successfully"
+      command_executor(command_id, notification) do
+        ForexServer::Strategies.instance.add(json(params)['id'])
       end
     end
 
@@ -32,7 +33,8 @@ module ForexServer
     def destroy_strategy(params, command_id)
       puts '--- Destroy strategy'
 
-      command_executor(command_id, 'Strategy deleted successfully') do
+      notification = "Stategy >>> #{json(params)['name']} <<< deleted successfully"
+      command_executor(command_id, notification) do
         ForexServer::Strategies.instance.delete(JSON.parse(params)['id'])
       end
     end
@@ -41,6 +43,10 @@ module ForexServer
       yield
       ForexServer::SqlManager.instance.call(ForexServer::CommandsSql.update_execute, [command_id])
       ForexServer::Logger.instance.call(message)
+    end
+
+    def json(params)
+      JSON.parse(params)
     end
   end
 end
