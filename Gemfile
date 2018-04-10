@@ -26,6 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'devise'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'haml_lint', '~> 0.27.0', require: false
   gem 'pry-byebug'
