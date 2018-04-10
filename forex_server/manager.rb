@@ -34,15 +34,15 @@ module ForexServer
       puts '--- Destroy strategy'
 
       notification = "Stategy >>> #{json(params)['name']} <<< deleted successfully"
-      command_executor(command_id, notification) do
+      command_executor(command_id, notification, 'alert') do
         ForexServer::Strategies.instance.delete(JSON.parse(params)['id'])
       end
     end
 
-    def command_executor(command_id, message)
+    def command_executor(command_id, message, kind = 'info')
       yield
       ForexServer::SqlManager.instance.call(ForexServer::CommandsSql.update_execute, [command_id])
-      ForexServer::Logger.instance.call(message)
+      ForexServer::Logger.instance.call(message, kind)
     end
 
     def json(params)
