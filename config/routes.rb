@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   post 'requests/send_notification'
   get 'home' => 'pages#home'
+
+  devise_for :users
 end

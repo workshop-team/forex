@@ -5,6 +5,9 @@ require 'rails_helper'
 RSpec.describe StrategiesController, type: :controller do
   render_views
   let(:strategy) { create(:strategy) }
+  let(:user) { create(:user) }
+
+  before { sign_in user }
 
   describe 'GET show' do
     it 'renders the show template' do
