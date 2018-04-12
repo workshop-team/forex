@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class StrategiesController < ApplicationController
+  authorize_resource
   before_action :set_strategy, only: %i[show edit update destroy]
 
   def index
