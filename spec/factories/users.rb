@@ -4,5 +4,6 @@ FactoryBot.define do
   factory :user do
     email 'forex.wsteam@gmail.com'
     password '123456'
+    role 'admin'
   end
 end

@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.0'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.0.0'
+gem 'cancancan', '~> 2.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'daemons', '~> 1.2', '>= 1.2.6'
 gem 'haml-rails', '~> 1.0'
