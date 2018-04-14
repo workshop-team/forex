@@ -16,4 +16,6 @@
       %li.nav-item
         = link_to 'home', root_path, class: 'nav-link'
       %li.nav-item
-        = link_to 'home', root_path, class: 'nav-link'
+        - if user_signed_in?
+          = link_to t('.logout'), destroy_user_session_path,
+          method: :delete, class: 'nav-link'
