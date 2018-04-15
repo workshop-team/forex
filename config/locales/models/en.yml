@@ -13,6 +13,9 @@ en:
       strategy_logic:
         one: 'Strategy logic'
         other: 'Strategy logics'
+      user:
+        one: 'User'
+        other: 'Users'
 
     attributes:
       streategy:
@@ -28,3 +31,6 @@ en:
       strategy_logic:
         class_name: 'Class name'
         label: 'Label'
+      user:
+        email: 'E-mail'
+        role: 'Role'

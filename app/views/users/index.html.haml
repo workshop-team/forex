@@ -1,0 +1,6 @@
+%table.table
+  %tr
+    %th{ scope: 'col' }= User.human_attribute_name(:email)
+    %th{ scope: 'col' }= User.human_attribute_name(:role)
+    %th{ scope: 'col' }
+  = render @users
