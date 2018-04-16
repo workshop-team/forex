@@ -28,3 +28,4 @@
 --git-common-dir
 
 /forex_server/forex.rb.pid
+.env
