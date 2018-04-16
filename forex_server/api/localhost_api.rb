@@ -15,8 +15,10 @@ module ForexServer
       prepare_call('post', 'send_notification', params)
     end
 
+    private
+
     def prepare_call(method, endpoint, params)
-      call(method, "#{URL}#{endpoint}", params.merge(token: TOKEN))
+      call(method, "#{URL}#{endpoint}", nil, params.merge(token: TOKEN))
     end
   end
 end
