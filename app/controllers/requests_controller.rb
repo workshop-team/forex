@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def send_notification
-    return unless token_ok?(params[:token])
+    return unless token_ok?
 
     if info_and_kind?
       notification_row = render_to_string(
@@ -22,12 +22,11 @@ class RequestsController < ApplicationController
   private
 
   def notification_params
-    params.permit(:info, :kind, :token)
+    params.permit(:info, :kind)
   end
 
-  def token_ok?(token)
-    # TODO: add token to secrets
-    token == '123456789'
+  def token_ok?
+    request.headers['X-AUTH-TOKEN'] == ENV['FOREX_SERVER_TOKEN']
   end
 
   def info_and_kind?
