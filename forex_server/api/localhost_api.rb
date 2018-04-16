@@ -8,8 +8,7 @@ module ForexServer
     include Singleton
 
     URL = 'http://localhost:3000/requests/'
-    # TODO: fetch token from Rails app
-    TOKEN = '123456789'
+    HEADERS = { 'X-AUTH-TOKEN': ENV['FOREX_SERVER_TOKEN'] }.freeze
 
     def send_notification(params)
       prepare_call('post', 'send_notification', params)
@@ -18,7 +17,7 @@ module ForexServer
     private
 
     def prepare_call(method, endpoint, params)
-      call(method, "#{URL}#{endpoint}", nil, params.merge(token: TOKEN))
+      call(method, "#{URL}#{endpoint}", HEADERS, params)
     end
   end
 end
