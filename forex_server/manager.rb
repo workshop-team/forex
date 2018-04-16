@@ -33,7 +33,7 @@ module ForexServer
     def destroy_strategy(params, command_id)
       puts '--- Destroy strategy'
 
-      notification = "Stategy >>> #{json(params)['name']} <<< deleted successfully"
+      notification = "Strategy >>> #{json(params)['name']} <<< deleted successfully"
       command_executor(command_id, notification, 'alert') do
         ForexServer::Strategies.instance.delete(JSON.parse(params)['id'])
       end

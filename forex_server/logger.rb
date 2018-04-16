@@ -7,8 +7,6 @@ module ForexServer
   class Logger
     include Singleton
 
-    URL = 'http://localhost:3000/requests/send_notification'
-
     def call(info, kind = 'info')
       current_time = Time.now
 
@@ -17,7 +15,7 @@ module ForexServer
         [kind, info, current_time, current_time]
       )
 
-      ForexServer::HttpRequester.instance.call('post', URL, info: info, kind: kind)
+      ForexServer::LocalhostApi.instance.send_notification(info: info, kind: kind)
     end
   end
 end

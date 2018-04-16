@@ -3,3 +3,4 @@
 # README
 
 * Required 'Redis'
+* Rename .env_sample to .env and set up configuration
