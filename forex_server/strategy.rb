@@ -2,14 +2,17 @@
 
 module ForexServer
   class Strategy
-    attr_reader :id, :name, :time_range, :instrument, :last_time, :strategy_logic
+    attr_reader :id, :name, :time_range, :instrument, :last_time, :strategy_logic, :class_name
 
-    def initialize(options = {})
-      @id = options.fetch(:id, nil)
-      @name = options.fetch(:strategy_name, nil)
-      @time_range = options.fetch(:time_range, nil).to_i
-      @instrument = options.fetch(:instrument_name, nil)
-      @strategy_logic = options.fetch(:strategy_logic, nil)
+    def initialize(db_result)
+      db_result.transform_keys!(&:to_sym)
+
+      @id = db_result.fetch(:id, nil)
+      @name = db_result.fetch(:strategy_name, nil)
+      @time_range = db_result.fetch(:time_range, nil).to_i
+      @instrument = db_result.fetch(:instrument_name, nil)
+      @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new
+      @class_name = db_result.fetch(:class_name, nil)
       @last_time = Time.now
     end
 

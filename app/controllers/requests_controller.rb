@@ -10,7 +10,7 @@ class RequestsController < ApplicationController
     if info_and_kind?
       notification_row = render_to_string(
         partial: '/notifications/notification',
-        locals: { notification: Notification.new(info: notification_params[:info], kind: notification_params[:kind]) }
+        locals: { notification: Notification.new(notification_params) }
       )
 
       ActionCable.server.broadcast 'notifications_channel', notification_row: notification_row

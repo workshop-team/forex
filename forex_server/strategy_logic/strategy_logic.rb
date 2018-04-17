@@ -11,7 +11,7 @@ module ForexServer
     def call(strategy)
       @strategy = strategy
 
-      puts "--- Run Strategy Logic 1 (#{strategy.name})"
+      puts "--- Run #{strategy.class_name} (#{strategy.name})"
       bs = buy_sell
       @trader.call(bs, strategy) unless bs.nil?
     end
