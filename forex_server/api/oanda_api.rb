@@ -10,7 +10,8 @@ module ForexServer
     URL = 'https://api-fxpractice.oanda.com/v3/'
     HEADERS = {
       'Content-Type': 'application/json',
-      'Authorization': "Bearer #{ENV['OANDA_TOKEN']}"
+      'Authorization': "Bearer #{ENV['OANDA_TOKEN']}",
+      'Accept-Datetime-Format': 'UNIX'
     }.freeze
 
     def last_price(instrument, params = { count: 1, granularity: 'S5', smooth: true })
