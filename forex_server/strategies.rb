@@ -21,9 +21,7 @@ module ForexServer
         [strategy_id]
       ).first
 
-      strategy = build_strategy_object(strategy_db_result)
-
-      @strategies << strategy
+      @strategies << Strategy.new(strategy_db_result)
     end
 
     def delete(strategy_id)
@@ -39,15 +37,7 @@ module ForexServer
         ForexServer::StrategiesSql.strategies
       )
 
-      results.each { |result| @strategies << build_strategy_object(result) }
-    end
-
-    def build_strategy_object(result)
-      result.transform_keys!(&:to_sym)
-      strategy_logic = Object.const_get("ForexServer::#{result[:class_name]}").new
-      result[:strategy_logic] = strategy_logic
-
-      ForexServer::Strategy.new(result)
+      results.each { |result| @strategies << Strategy.new(result) }
     end
   end
 end
