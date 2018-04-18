@@ -3,7 +3,7 @@
   = @strategy.name
 %p
   %b= Strategy.human_attribute_name :time_range
-  = @strategy.time_range
+  = @strategy.granularity.name
 %p
   %b= Instrument.model_name.human
   = @strategy.instrument.name
