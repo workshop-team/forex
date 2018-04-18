@@ -7,14 +7,14 @@ require Rails.root.join('forex_server/strategy_logic/strategy_logic1')
 describe ForexServer::Strategy do
   let(:strategy1) do
     ForexServer::Strategy.new(
-      'id': 1, 'strategy_name': 'Strategia 1', 'time_range': 2,
+      'id': 1, 'strategy_name': 'Strategia 1', 'value': 10,
       'instrument_name': 'eur_usd', 'class_name': 'StrategyLogic1'
     )
   end
 
   let(:strategy2) do
     ForexServer::Strategy.new(
-      'id': 1, 'strategy_name': 'Strategia 1', 'time_range': 2,
+      'id': 1, 'strategy_name': 'Strategia 1', 'value': 10,
       'instrument_name': nil, 'class_name': 'StrategyLogic1'
     )
   end
