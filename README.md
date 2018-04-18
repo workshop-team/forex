@@ -4,3 +4,4 @@
 
 * Required 'Redis'
 * Rename .env_sample to .env and set up configuration
+* It's importend to add seeds ``` rake db:seed ```
