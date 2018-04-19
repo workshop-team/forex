@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_12_132834) do
+ActiveRecord::Schema.define(version: 2018_04_18_072934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2018_04_12_132834) do
     t.string "name", null: false
     t.json "params"
     t.boolean "execute", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "granularities", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "value", null: false
+    t.string "label"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,11 +56,12 @@ ActiveRecord::Schema.define(version: 2018_04_12_132834) do
 
   create_table "strategies", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "time_range", null: false
     t.bigint "instrument_id"
     t.bigint "strategy_logic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "granularity_id"
+    t.index ["granularity_id"], name: "index_strategies_on_granularity_id"
     t.index ["instrument_id"], name: "index_strategies_on_instrument_id"
     t.index ["strategy_logic_id"], name: "index_strategies_on_strategy_logic_id"
   end
@@ -86,6 +95,7 @@ ActiveRecord::Schema.define(version: 2018_04_12_132834) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "strategies", "granularities"
   add_foreign_key "strategies", "instruments"
   add_foreign_key "strategies", "strategy_logics"
 end

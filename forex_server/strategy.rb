@@ -2,14 +2,15 @@
 
 module ForexServer
   class Strategy
-    attr_reader :id, :name, :time_range, :instrument, :last_time, :strategy_logic, :class_name
+    attr_reader :id, :name, :granularity_value, :instrument, :last_time, :strategy_logic, :class_name, :granularity_name
 
     def initialize(db_result)
       db_result.transform_keys!(&:to_sym)
 
       @id = db_result.fetch(:id, nil)
       @name = db_result.fetch(:strategy_name, nil)
-      @time_range = db_result.fetch(:time_range, nil).to_i
+      @granularity_value = db_result.fetch(:value, nil).to_i
+      @granularity_name = db_result.fetch(:granularity_name, nil)
       @instrument = db_result.fetch(:instrument_name, nil)
       @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new
       @class_name = db_result.fetch(:class_name, nil)
@@ -25,11 +26,11 @@ module ForexServer
     end
 
     def refresh_strategy?
-      @last_time + @time_range <= Time.now
+      @last_time + @granularity_value <= Time.now
     end
 
     def valid?
-      !@id.nil? && !@name.nil? && !@time_range.nil? && !@instrument.nil? && !@strategy_logic.nil?
+      !@id.nil? && !@name.nil? && !@granularity_value.nil? && !@instrument.nil? && !@strategy_logic.nil?
     end
   end
 end

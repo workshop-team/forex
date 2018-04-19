@@ -5,7 +5,7 @@ class StrategiesController < ApplicationController
   before_action :set_strategy, only: %i[show edit update destroy]
 
   def index
-    @strategies = Strategy.includes(:instrument, :strategy_logic)
+    @strategies = Strategy.includes(:instrument, :strategy_logic, :granularity)
   end
 
   def new
@@ -45,6 +45,6 @@ class StrategiesController < ApplicationController
   end
 
   def strategy_params
-    params.require(:strategy).permit(:name, :time_range, :instrument_id, :strategy_logic_id)
+    params.require(:strategy).permit(:name, :instrument_id, :strategy_logic_id, :granularity_id)
   end
 end

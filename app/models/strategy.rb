@@ -3,7 +3,7 @@
 class Strategy < ApplicationRecord
   belongs_to :instrument
   belongs_to :strategy_logic
+  belongs_to :granularity
 
-  validates :name, :time_range, presence: true
-  validates :time_range, numericality: true
+  validates :name, presence: true
 end

@@ -5,11 +5,12 @@ module ForexServer
     class << self
       def strategies
         <<-QUERY
-          SELECT s.id, s.name AS strategy_name, s.time_range, s.instrument_id,
-          sl.class_name , i.name AS instrument_name
+          SELECT s.id, s.name AS strategy_name, g.value, s.instrument_id,
+          sl.class_name , i.name AS instrument_name, g.name AS granularity_name
           FROM strategies AS s
           JOIN strategy_logics AS sl ON sl.id = s.strategy_logic_id
           JOIN instruments AS i ON i.id = s.instrument_id
+          JOIN granularities AS g ON g.id = s.granularity_id
         QUERY
       end
 

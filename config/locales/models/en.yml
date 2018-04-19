@@ -18,9 +18,9 @@ en:
         other: 'Users'
 
     attributes:
-      streategy:
+      strategy:
         name: 'Name'
-        time_range: 'Time range'
+        granularity: 'Granularity'
       instrument:
         name: 'Name'
         label: 'Label'
