@@ -1,28 +1,42 @@
 # frozen_string_literal: true
 
+require_relative 'beginner_timer'
+
 module ForexServer
   class Strategy
-    attr_reader :id, :name, :granularity_value, :instrument, :last_time, :strategy_logic, :class_name, :granularity_name
+    attr_reader(
+      :id, :name, :granularity_value, :instrument_name, :instrument_label,
+      :strategy_logic, :class_name, :granularity_name,
+      :last_time
+    )
 
     def initialize(db_result)
+      define_fields(db_result)
+
+      @last_time = Time.at(BeginnerTimer.call(self))
+    end
+
+    def call
+      return unless refresh_strategy? && valid?
+      @last_time += @granularity_value
+
+      puts "-- Call strategy: #{@name}"
+      @strategy_logic.call(self)
+    end
+
+    private
+
+    def define_fields(db_result)
       db_result.transform_keys!(&:to_sym)
 
       @id = db_result.fetch(:id, nil)
       @name = db_result.fetch(:strategy_name, nil)
       @granularity_value = db_result.fetch(:value, nil).to_i
       @granularity_name = db_result.fetch(:granularity_name, nil)
-      @instrument = db_result.fetch(:instrument_name, nil)
+      @instrument_name = db_result.fetch(:instrument_name, nil)
+      @instrument_label = db_result.fetch(:instrument_label, nil)
       @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new
       @class_name = db_result.fetch(:class_name, nil)
-      @last_time = Time.now
-    end
-
-    def call
-      return unless refresh_strategy? && valid?
-      @last_time = Time.now
-
-      puts "-- Call strategy: #{@name}"
-      @strategy_logic.call(self)
     end
 
     def refresh_strategy?
@@ -30,7 +44,7 @@ module ForexServer
     end
 
     def valid?
-      !@id.nil? && !@name.nil? && !@granularity_value.nil? && !@instrument.nil? && !@strategy_logic.nil?
+      !@id.nil? && !@name.nil? && !@granularity_value.nil? && !@instrument_name.nil? && !@strategy_logic.nil?
     end
   end
 end
