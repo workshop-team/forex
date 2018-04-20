@@ -29,13 +29,7 @@ module ForexServer
     end
 
     def call
-      # @strategies.each(&:call)
-      # threads = []
-
       @strategies.each { |strategy| Thread.new { strategy.call } }
-
-      # threads.each { |thr| thr.join }
-      # threads.each(&:join)
     end
 
     def init_data
