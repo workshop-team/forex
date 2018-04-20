@@ -2,6 +2,8 @@
 
 module ForexServer
   class BeginnerTimer
+    WAIT = 10 # Time in seconds. Allows Oanda generate the newest data.
+
     def self.call(strategy)
       result =
         ForexServer::OandaApi.instance.last_price(
@@ -9,7 +11,7 @@ module ForexServer
         )
 
       result = JSON.parse(result)
-      result['candles'][0]['time'].to_i + strategy.granularity_value.to_i
+      result['candles'][0]['time'].to_i + strategy.granularity_value.to_i + WAIT
     end
   end
 end
