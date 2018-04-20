@@ -18,7 +18,7 @@ module ForexServer
 
     def call
       return unless refresh_strategy? && valid?
-      @last_time += @granularity_value
+      @last_time = Time.now
 
       puts "-- Call strategy: #{@name}"
       @strategy_logic.call(self)
