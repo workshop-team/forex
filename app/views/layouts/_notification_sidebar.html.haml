@@ -1,4 +1,7 @@
-%nav.col-sm-3.col-md-2.hidden-xs-down.bg-faded.sidebar.messages
-  -# TODO:   = render @notifications
-  - @notifications.each do |notification|
-    = render 'notifications/notification', notification: notification
+%aside.main-sidebar
+  %section.sidebar
+    %ul.sidebar-menu.tree{ 'data-widget' => 'tree' }
+      %li.header Notifications
+      %li
+        - @notifications.each do |notification|
+          = render 'notifications/notification', notification: notification
