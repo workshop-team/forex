@@ -6,9 +6,9 @@ Instrument.find_or_create_by(name: 'gbp_usd', label: 'GBP/USD')
 Instrument.find_or_create_by(name: 'aud_usd', label: 'AUD/USD')
 Instrument.find_or_create_by(name: 'nzd_usd', label: 'NZD/USD')
 
-Granularity.find_or_create_by(name: 'S5', value: 5.second.to_i, label: '5 second candlesticks, minute alignment')
-Granularity.find_or_create_by(name: 'S10', value: 10.second.to_i, label: '10 second candlesticks, minute alignment')
-Granularity.find_or_create_by(name: 'S15', value: 15.second.to_i, label: '15 second candlesticks, minute alignment')
+# TODO: Allow App trading on shorter granularity if needed
+# Granularity.find_or_create_by(name: 'S10', value: 10.second.to_i, label: '10 second candlesticks, minute alignment')
+# Granularity.find_or_create_by(name: 'S15', value: 15.second.to_i, label: '15 second candlesticks, minute alignment')
 Granularity.find_or_create_by(name: 'S30', value: 30.second.to_i, label: '30 second candlesticks, minute alignment')
 
 Granularity.find_or_create_by(name: 'M1', value: 1.minute.to_i, label: '1 minute candlesticks, minute alignment')
