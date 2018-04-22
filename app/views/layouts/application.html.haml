@@ -13,12 +13,16 @@
   %body.skin-blue-light{ 'data-spy': 'scroll', 'data-target': '#scrollspy' }
   .wrapper.wstyle
     = render 'layouts/header'
-    = render 'layouts/notification_sidebar'
+    = render 'layouts/menu_sidebar'
     .content-wrapper.mhight
       %section.content-header
         = render 'layouts/flash_messages'
       %section.content.container-fluid
-        = yield
+        .row
+          .col-md-4
+            = render 'layouts/notification_box'
+          .col-md-8
+            = yield
     %footer.main-footer
       .pull-right.hidden-xs
         Anything you want
