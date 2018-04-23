@@ -2,14 +2,14 @@
 
 require 'singleton'
 require 'pg'
+require_relative 'database'
 
 module ForexServer
   class SqlManager
     include Singleton
 
     def call(query, params = [])
-      # TODO: Setting credintals in .env and build a logic for using develop/production db
-      con = PG.connect dbname: 'forex_development' # , user: 'user_sample', password: 'pswd_sample'
+      con = ForexServer::Database.connection
       con.exec_params(query, params)
     rescue PG::Error => e
       ForexServer::Logger.instance.call(e.message, 'error')
