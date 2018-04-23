@@ -43,6 +43,12 @@ end
 
 group :development do
   gem 'brakeman', require: false
+  gem 'capistrano', '~> 3.10', require: false
+  gem 'capistrano-bundler', '~> 1.3.0'
+  gem 'capistrano-passenger', '~> 0.2'
+  gem 'capistrano-rails', '~> 1.3.1'
+  gem 'capistrano-rvm', '~> 0.1.2'
+  gem 'capistrano-scm-gitcopy', '~> 0.1.5'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit', require: false
   gem 'spring'
