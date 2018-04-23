@@ -15,6 +15,6 @@ test:
 
 production:
   <<: *default
-  database: forex_production
+  database: forex
   username: forex
   password: <%= ENV['FOREX_DATABASE_PASSWORD'] %>
