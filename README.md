@@ -5,3 +5,5 @@
 * Required 'Redis'
 * Rename .env_sample to .env and set up configuration
 * It's importend to add seeds ``` rake db:seed ```
+* After starting rails app using ` rails s ` run ForexServer `ruby forex_server/forex_daemon.rb start` in new terminal
+* If you want see infos generating from ForexServer use `ruby forex_server/forex_daemon.rb run` (ruby forex_server/forex_daemon.rb start | stop | run | status).
