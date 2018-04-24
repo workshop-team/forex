@@ -29,3 +29,5 @@
 
 /forex_server/forex.rb.pid
 .env
+.DS_Store
+
