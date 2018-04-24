@@ -21,6 +21,10 @@ append(
   'public/uploads'
 )
 
+before 'deploy:starting', 'custom:stop_forex_server'
+after 'deploy:migrating', 'custom:add_seed'
+after 'deploy:cleanup', 'custom:start_forex_server'
+
 set :keep_releases, 5
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 set :passenger_restart_with_touch, true

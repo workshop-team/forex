@@ -3,6 +3,7 @@
 require 'dotenv'
 Dotenv.load(File.expand_path('../.env', __dir__))
 
+require_relative 'settings'
 require_relative 'heart'
 require_relative 'strategies'
 require_relative 'strategy_logic/strategy_logic1'

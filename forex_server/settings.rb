@@ -3,14 +3,22 @@
 require 'socket'
 
 module ForexServer
-  class Database
+  class Settings
     class << self
-      def connection
-        if Socket.gethostname == 'workshop-team'
+      def db_connection
+        if production_env?
           PG.connect dbname: 'forex', user: 'forex', password: ENV['FOREX_DATABASE_PASSWORD']
         else
           PG.connect dbname: 'forex_development'
         end
+      end
+
+      def domain
+        production_env? ? 'forex.biegokracja.pl' : 'localhost:3000'
+      end
+
+      def production_env?
+        Socket.gethostname == 'workshop-team'
       end
     end
   end

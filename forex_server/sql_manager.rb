@@ -2,14 +2,13 @@
 
 require 'singleton'
 require 'pg'
-require_relative 'database'
 
 module ForexServer
   class SqlManager
     include Singleton
 
     def call(query, params = [])
-      con = ForexServer::Database.connection
+      con = ForexServer::Settings.db_connection
       con.exec_params(query, params)
     rescue PG::Error => e
       ForexServer::Logger.instance.call(e.message, 'error')
