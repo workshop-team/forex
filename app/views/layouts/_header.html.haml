@@ -7,3 +7,10 @@
   %nav.navbar.navbar-static-top{ role: 'navigation' }
     %a.sidebar-toggle{ 'data-toggle' => 'push-menu', href: '#', :role => 'button' }
       %span.sr-only Toggle navigation
+    .navbar-custom-menu
+      %ul.nav.navbar-nav
+        / Messages: style can be found in dropdown.less
+        %li.dropdown.messages-menu
+          = link_to destroy_user_session_path,
+          method: :delete, 'data-toggle' => 'tooltip', title: 'hello' do
+            %i.fa.fa-sign-out= t('.logout')

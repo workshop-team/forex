@@ -14,7 +14,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require adminlte/app.min.js
 //= require bootstrap-sprockets
 //= require adminlte/app.min.js
 //= require_tree .
