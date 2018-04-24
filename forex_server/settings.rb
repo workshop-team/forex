@@ -13,6 +13,10 @@ module ForexServer
         end
       end
 
+      def domain
+        production_env? ? 'forex.biegokracja.pl' : 'localhost:3000'
+      end
+
       def production_env?
         Socket.gethostname == 'workshop-team'
       end
