@@ -2,3 +2,5 @@ en:
   layouts:
     header:
       logout: 'Log out'
+      home: 'Home'
+      lastest_notifications: 'Lastest Notifications'

@@ -1,2 +1,3 @@
-%p{ class: "mininote alert #{bootstrap_class_for(notification.kind)}" }
-  = notification.info
+%tr
+  %td{ class: "mininote alert #{bootstrap_class_for(notification.kind)}" }
+    = notification.info
