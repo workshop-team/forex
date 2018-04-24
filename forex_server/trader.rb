@@ -7,11 +7,11 @@ module ForexServer
     end
 
     def buy(strategy)
-      puts "---- Buy #{strategy.instrument}"
+      puts "---- Buy #{strategy.instrument_name}"
     end
 
     def sell(strategy)
-      puts "---- Sell #{strategy.instrument}"
+      puts "---- Sell #{strategy.instrument_name}"
     end
   end
 end

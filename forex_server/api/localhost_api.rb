@@ -7,7 +7,7 @@ module ForexServer
   class LocalhostApi < HttpRequester
     include Singleton
 
-    URL = 'http://localhost:3000/requests/'
+    URL = "http://#{ForexServer::Settings.domain}/requests/"
     HEADERS = { 'X-AUTH-TOKEN': ENV['FOREX_SERVER_TOKEN'] }.freeze
 
     def send_notification(params)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Price < ApplicationRecord
-  validates :instrument, :ask, :bid, :time, presence: true
-  validates :ask, :bid, numericality: true
+  validates :open, :high, :low, :close, :volume, :time, presence: true
+  validates :open, :high, :low, :close, numericality: true
 
-  enum instrument: { eur_usd: 0, nzd_usd: 1 }
+  belongs_to :strategy
 end

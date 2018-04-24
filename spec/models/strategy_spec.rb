@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe Strategy, type: :model do
   it { should validate_presence_of(:name) }
 
+  it { should have_many(:prices) }
   it { should belong_to(:strategy_logic) }
   it { should belong_to(:instrument) }
   it { should belong_to(:granularity) }

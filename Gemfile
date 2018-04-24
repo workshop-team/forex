@@ -12,6 +12,7 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'cancancan', '~> 2.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'daemons', '~> 1.2', '>= 1.2.6'
+gem 'devise'
 gem 'haml-rails', '~> 1.0'
 gem 'http'
 gem 'jbuilder', '~> 2.5'
@@ -27,7 +28,6 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'devise'
   gem 'dotenv-rails'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'haml_lint', '~> 0.27.0', require: false
@@ -43,6 +43,12 @@ end
 
 group :development do
   gem 'brakeman', require: false
+  gem 'capistrano', '~> 3.10', require: false
+  gem 'capistrano-bundler', '~> 1.3.0'
+  gem 'capistrano-passenger', '~> 0.2'
+  gem 'capistrano-rails', '~> 1.3.1'
+  gem 'capistrano-rvm', '~> 0.1.2'
+  gem 'capistrano-scm-gitcopy', '~> 0.1.5'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit', require: false
   gem 'spring'

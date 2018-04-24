@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_18_072934) do
+ActiveRecord::Schema.define(version: 2018_04_19_161626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,12 +46,17 @@ ActiveRecord::Schema.define(version: 2018_04_18_072934) do
   end
 
   create_table "prices", force: :cascade do |t|
-    t.decimal "ask", null: false
-    t.decimal "bid", null: false
     t.datetime "time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "instrument", null: false
+    t.bigint "strategy_id"
+    t.decimal "open", null: false
+    t.decimal "high", null: false
+    t.decimal "low", null: false
+    t.decimal "close", null: false
+    t.integer "volume", null: false
+    t.index ["strategy_id", "time"], name: "index_prices_on_strategy_id_and_time", unique: true
+    t.index ["strategy_id"], name: "index_prices_on_strategy_id"
   end
 
   create_table "strategies", force: :cascade do |t|
@@ -95,6 +100,7 @@ ActiveRecord::Schema.define(version: 2018_04_18_072934) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "prices", "strategies"
   add_foreign_key "strategies", "granularities"
   add_foreign_key "strategies", "instruments"
   add_foreign_key "strategies", "strategy_logics"
