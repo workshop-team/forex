@@ -9,6 +9,7 @@ module ForexServer
 
     URL = 'https://api-fxpractice.oanda.com/v3/'
     HEADERS = {
+      'Connection': 'Keep-Alive',
       'Content-Type': 'application/json',
       'Authorization': "Bearer #{ENV['OANDA_TOKEN']}",
       'Accept-Datetime-Format': 'UNIX'
