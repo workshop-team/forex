@@ -13,4 +13,5 @@
         %li.dropdown.messages-menu
           = link_to destroy_user_session_path,
           method: :delete, 'data-toggle' => 'tooltip', title: 'hello' do
-            %i.fa.fa-sign-out= t('.logout')
+            %i.fa.fa-sign-out
+            = t('.logout')
