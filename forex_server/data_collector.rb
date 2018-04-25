@@ -8,26 +8,52 @@ module ForexServer
       @strategy = strategy
       puts "-- Fetch and save instruments data from strategy #{@strategy.name}"
 
+      query_array = [] << @strategy.id << fetch_last_price.values
       current_time = Time.now
-      query_array = [] << @strategy.id << fetch_last_complete_price.values << current_time << current_time
+      query_array << current_time << current_time
 
       ForexServer::SqlManager.instance.call(ForexServer::PricesSql.insert_price, query_array.flatten!)
     end
 
     private
 
-    def fetch_last_complete_price
-      result =
-        ForexServer::OandaApi.instance.last_price(
-          @strategy.instrument_name.upcase, count: 2, granularity: @strategy.granularity_name, smooth: true
-        )
+    def fetch_last_price
+      fetch_data = true
+
+      while fetch_data
+        result =
+          ForexServer::OandaApi.instance.last_price(
+            @strategy.instrument_name.upcase, count: 2, granularity: @strategy.granularity_name, smooth: true
+          )
+
+        result = JSON.parse(result)['candles'][0]
+        fetch_data = fetch_data?(result['time'])
+      end
 
       convert_json_result_to_hash(result)
     end
 
-    def convert_json_result_to_hash(result)
-      result = JSON.parse(result)['candles'][0]
+    def fetch_data?(time)
+      if price_exist? time
+        ForexServer::Logger.instance.call(
+          "Can\'t fetch data for #{@strategy.name}. Will try again in 5 seconds", 'alert'
+        )
 
+        puts "--- Waiting 5 sec. for #{@strategy.name}"
+        sleep(5)
+        true
+      else
+        false
+      end
+    end
+
+    def price_exist?(time)
+      ForexServer::SqlManager.instance.call(
+        ForexServer::PricesSql.count_prices, [@strategy.id, Time.at(time.to_i)]
+      )[0]['count'].to_i == 1
+    end
+
+    def convert_json_result_to_hash(result)
       {
         volume: result['volume'],
         time: convert_unix_time_to_ror_date(result['time']),
