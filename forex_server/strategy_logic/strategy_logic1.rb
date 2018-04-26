@@ -5,12 +5,19 @@ require_relative '../trader'
 
 module ForexServer
   class StrategyLogic1 < ForexServer::StrategyLogic
-    def buy_sell
-      # here is the place for the main logic
-      # strategy - object
+    def buy?
+      # Here is the place for the main logic
 
-      # returns :buy/:sell/nil
-      %i[buy sell].sample
+      # Accessible data
+      # object: strategy
+      # hash: last_price
+
+      # should return true/false
+      true
+    end
+
+    def sell?
+      true
     end
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../data_collector'
+require_relative '../order'
 
 module ForexServer
   class StrategyLogic
@@ -16,8 +17,11 @@ module ForexServer
       @last_price = @data_collector.call(strategy)
 
       puts "--- Run #{strategy.class_name} (#{strategy.name})"
-      bs = buy_sell
-      @trader.call(bs, strategy) unless bs.nil?
+
+      order_exist = ForexServer::Order.exist?(strategy)
+
+      @trader.call(:sell, strategy) if order_exist && sell?
+      @trader.call(:buy, strategy) if !order_exist && buy?
     end
   end
 end
