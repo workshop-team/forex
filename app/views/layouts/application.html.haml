@@ -19,10 +19,10 @@
         = render 'layouts/flash_messages'
       %section.content.container-fluid
         .row
-          .col-md-4
-            = render 'layouts/notification_box'
           .col-md-8
             = yield
+          .col-md-4
+            = render 'layouts/notification_box'
     %footer.main-footer
       .pull-right.hidden-xs
         Anything you want
