@@ -8,7 +8,7 @@ module ForexServer
     include Singleton
 
     URL = "http://#{ForexServer::Settings.domain}/requests/"
-    HEADERS = { 'X-AUTH-TOKEN': ENV['FOREX_SERVER_TOKEN'] }.freeze
+    HEADERS = { 'X-AUTH-TOKEN': ENV['FOREX_SERVER_TOKEN'], 'Connection': 'Keep-Alive' }.freeze
 
     def send_notification(params)
       prepare_call('post', 'send_notification', params)
