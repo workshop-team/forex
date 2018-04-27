@@ -8,11 +8,9 @@ module ForexServer
       @strategy = strategy
       puts "-- Fetch and save instruments data from strategy #{@strategy.name}"
 
-      query_array = [] << @strategy.id << fetch_last_price.values
-      current_time = Time.now
-      query_array << current_time << current_time
-
-      ForexServer::SqlManager.instance.call(ForexServer::PricesSql.insert_price, query_array.flatten!)
+      fetch_last_price.tap do |last_price|
+        ForexServer::SqlManager.instance.call(ForexServer::PricesSql.insert_price, query_array(last_price))
+      end
     end
 
     private
@@ -66,6 +64,15 @@ module ForexServer
 
     def convert_unix_time_to_ror_date(unix_time)
       Time.at(unix_time.to_i)
+    end
+
+    def query_array(last_price)
+      [].tap do |query_array|
+        query_array << @strategy.id << last_price.values
+        current_time = Time.now
+        query_array << current_time << current_time
+        query_array.flatten!
+      end
     end
   end
 end
