@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_19_161626) do
+ActiveRecord::Schema.define(version: 2018_04_26_100711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2018_04_19_161626) do
     t.string "info", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "strategy_id"
+    t.decimal "price_buy", null: false
+    t.decimal "price_sell"
+    t.integer "units", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["strategy_id"], name: "index_orders_on_strategy_id"
   end
 
   create_table "prices", force: :cascade do |t|
@@ -100,6 +110,7 @@ ActiveRecord::Schema.define(version: 2018_04_19_161626) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "orders", "strategies"
   add_foreign_key "prices", "strategies"
   add_foreign_key "strategies", "granularities"
   add_foreign_key "strategies", "instruments"
