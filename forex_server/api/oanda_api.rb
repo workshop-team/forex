@@ -20,6 +20,19 @@ module ForexServer
       prepare_call('get', endpoint, params)
     end
 
+    def trade(instrument, units = 1)
+      body = {
+        order: {
+          units: units.to_s,
+          instrument: instrument.upcase,
+          'timeInForce': 'FOK', 'type': 'MARKET', 'positionFill': 'DEFAULT'
+        }
+      }.to_json
+
+      endpoint = "accounts/#{ENV['OANDA_ACCOUNT_ID']}/orders"
+      prepare_call('post_body', endpoint, body)
+    end
+
     private
 
     def prepare_call(method, endpoint, params)
