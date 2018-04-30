@@ -10,6 +10,13 @@ module ForexServer
         QUERY
       end
 
+      def where_strategy_id
+        <<-QUERY
+          SELECT * FROM orders
+          WHERE strategy_id = $1
+        QUERY
+      end
+
       def insert
         <<-QUERY
           INSERT INTO orders
