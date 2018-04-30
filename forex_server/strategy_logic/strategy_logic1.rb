@@ -13,11 +13,11 @@ module ForexServer
       # hash: last_price
 
       # should return true/false
-      true
+      false
     end
 
     def sell?
-      true
+      false
     end
   end
 end

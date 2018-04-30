@@ -11,14 +11,22 @@ module ForexServer
         )[0]['count'].to_i == 1
       end
 
-      def insert(strategy, price_buy)
+      def insert(strategy, buy_info)
         now = Time.now
-        # TODO: fetch from Strategy.units OR set 5% of your capital if field 'units' is nil
-        units = 100
+        time = Time.at(buy_info[:time].to_i)
 
         ForexServer::SqlManager.instance.call(
           ForexServer::OrdersSql.insert,
-          [strategy.id, price_buy, units, now, now]
+          [strategy.id, buy_info[:price], time, buy_info[:order_id], buy_info[:units], now, now]
+        )
+      end
+
+      def update(strategy, sell_info)
+        time = Time.at(sell_info[:time].to_i)
+
+        ForexServer::SqlManager.instance.call(
+          ForexServer::OrdersSql.update,
+          [strategy.id, sell_info[:price], time, sell_info[:order_id]]
         )
       end
     end
