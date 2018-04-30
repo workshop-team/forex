@@ -16,10 +16,14 @@ module ForexServer
       handle_error { HTTP.headers(headers).post(url, params: params) }
     end
 
+    def post_body(url, headers, body)
+      handle_error { HTTP.headers(headers).post(url, body: body) }
+    end
+
     def handle_error
       yield
     rescue HTTP::ConnectionError => e
-      puts e.message
+      puts "FS: #{e.message}"
     end
   end
 end
