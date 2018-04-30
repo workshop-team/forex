@@ -21,6 +21,8 @@ en:
       strategy:
         name: 'Name'
         granularity: 'Granularity'
+        units: 'Units'
+        status: 'Status'
       instrument:
         name: 'Name'
         label: 'Label'

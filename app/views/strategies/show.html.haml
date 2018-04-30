@@ -11,6 +11,14 @@
   %b= StrategyLogic.model_name.human
   = @strategy.strategy_logic.label
 
+%p
+  %b= Strategy.human_attribute_name :units
+  = @strategy.units
+
+%p
+  %b= Strategy.human_attribute_name :status
+  = @strategy.status
+
 = link_to t('edit'), edit_strategy_path(@strategy)
 \|
 = link_to t('back'), strategies_path
