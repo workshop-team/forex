@@ -16,8 +16,8 @@ module ForexServer
     end
 
     def add(strategy_id)
-      strategy_db_result = ForexServer::SqlManager.instance.call(
-        ForexServer::StrategiesSql.strategy_with_id,
+      strategy_db_result = SqlManager.instance.call(
+        StrategiesSql.strategy_with_id,
         [strategy_id]
       ).first
 
@@ -33,8 +33,8 @@ module ForexServer
     end
 
     def init_data
-      results = ForexServer::SqlManager.instance.call(
-        ForexServer::StrategiesSql.strategies
+      results = SqlManager.instance.call(
+        StrategiesSql.strategies_with_status_created
       )
 
       results.each { |result| @strategies << Strategy.new(result) }
