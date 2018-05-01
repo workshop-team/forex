@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Strategy, type: :model do
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:status) }
+  it { should validate_numericality_of(:units) }
 
   it { should have_many(:prices) }
   it { should have_one(:order) }

@@ -8,8 +8,8 @@ module ForexServer
     attr_accessor :strategy, :last_price
 
     def initialize
-      @trader = ForexServer::Trader.new
-      @data_collector = ForexServer::DataCollector.new
+      @trader = Trader.new
+      @data_collector = DataCollector.new
     end
 
     def call(strategy)
@@ -18,10 +18,11 @@ module ForexServer
 
       puts "--- Run #{strategy.class_name} (#{strategy.name})"
 
-      order_exist = ForexServer::Order.exist?(strategy)
+      order = Order.where_strategy_id(strategy)
+      order_exist = order.count == 1
 
-      @trader.call(:sell, strategy) if order_exist && sell?
-      @trader.call(:buy, strategy) if !order_exist && buy?
+      @trader.buy(strategy) if !order_exist && buy?
+      @trader.sell(strategy, order) if order_exist && sell?
     end
   end
 end

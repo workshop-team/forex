@@ -5,8 +5,8 @@ require_relative 'beginner_timer'
 module ForexServer
   class Strategy
     attr_reader(
-      :id, :name, :granularity_value, :instrument_name, :instrument_label,
-      :strategy_logic, :class_name, :granularity_name,
+      :id, :name, :granularity_value, :instrument_name,
+      :strategy_logic, :class_name, :granularity_name, :units,
       :last_time
     )
 
@@ -34,7 +34,7 @@ module ForexServer
       @granularity_value = db_result.fetch(:value, nil).to_i
       @granularity_name = db_result.fetch(:granularity_name, nil)
       @instrument_name = db_result.fetch(:instrument_name, nil)
-      @instrument_label = db_result.fetch(:instrument_label, nil)
+      @units = db_result.fetch(:units, nil)
       @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new
       @class_name = db_result.fetch(:class_name, nil)
     end

@@ -6,5 +6,7 @@ FactoryBot.define do
     instrument
     strategy_logic
     granularity
+    units 100
+    status 0
   end
 end
