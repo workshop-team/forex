@@ -4,6 +4,11 @@ require_relative 'strategy_logic'
 
 module ForexServer
   class StrategyLogic1 < StrategyLogic
+    def init_data
+      # Add initial 'data' to hash
+      {}
+    end
+
     def buy?
       # Here is the place for the main logic
 

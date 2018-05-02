@@ -20,8 +20,8 @@ module ForexServer
 
       def insert
         <<-QUERY
-          INSERT INTO strategy_logic_providers (strategy_id, created_at, updated_at)
-          VALUES($1, $2, $3)
+          INSERT INTO strategy_logic_providers (strategy_id, data, created_at, updated_at)
+          VALUES($1, $2, $3, $4)
         QUERY
       end
     end

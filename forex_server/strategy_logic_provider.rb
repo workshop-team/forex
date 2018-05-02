@@ -11,9 +11,11 @@ module ForexServer
       end
 
       def insert(strategy)
+        data = strategy.strategy_logic.init_data
         now = Time.now
-        SqlManager.instance.call(StrategyLogicProvidersSql.insert, [strategy.id, now, now])
-        {}
+
+        SqlManager.instance.call(StrategyLogicProvidersSql.insert, [strategy.id, data, now, now])
+        data
       end
 
       def data_to_hash(result)
