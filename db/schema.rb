@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_30_094512) do
+ActiveRecord::Schema.define(version: 2018_05_02_105424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,14 @@ ActiveRecord::Schema.define(version: 2018_04_30_094512) do
     t.index ["strategy_logic_id"], name: "index_strategies_on_strategy_logic_id"
   end
 
+  create_table "strategy_logic_providers", force: :cascade do |t|
+    t.bigint "strategy_id"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["strategy_id"], name: "index_strategy_logic_providers_on_strategy_id"
+  end
+
   create_table "strategy_logics", force: :cascade do |t|
     t.string "class_name", null: false
     t.string "label", null: false
@@ -121,4 +129,5 @@ ActiveRecord::Schema.define(version: 2018_04_30_094512) do
   add_foreign_key "strategies", "granularities"
   add_foreign_key "strategies", "instruments"
   add_foreign_key "strategies", "strategy_logics"
+  add_foreign_key "strategy_logic_providers", "strategies"
 end
