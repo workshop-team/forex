@@ -4,6 +4,7 @@ require_relative '../trader'
 require_relative '../data_collector'
 require_relative '../order'
 require_relative '../strategy_logic_provider'
+require_relative 'functions/candel'
 
 module ForexServer
   class StrategyLogic
