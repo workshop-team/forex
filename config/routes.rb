@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[index edit update]
 
   post 'requests/send_notification'
+  post 'requests/show_panel'
+
   get 'home' => 'pages#home'
 
   devise_for :users
