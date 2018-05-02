@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'init_timer'
+require_relative 'strategy_logic/strategy_logic1'
+require_relative 'strategy_logic/three_down_one_up'
 
 module ForexServer
   class Strategy
