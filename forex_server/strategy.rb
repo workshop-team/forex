@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'beginner_timer'
+require_relative 'init_timer'
 
 module ForexServer
   class Strategy
@@ -13,7 +13,7 @@ module ForexServer
     def initialize(db_result)
       define_fields(db_result)
 
-      @last_time = Time.at(BeginnerTimer.call(self))
+      @last_time = Time.at(InitTimer.call(self))
     end
 
     def call
