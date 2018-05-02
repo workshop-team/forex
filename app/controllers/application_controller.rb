@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
   before_action :note
+  before_action :show_panel
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resources
     devise_controller? ? 'devise' : 'application'
+  end
+
+  def show_panel
+    @show_panel_class = session[:show_panel] == 'false' ? 'sidebar-collapse' : ''
   end
 end

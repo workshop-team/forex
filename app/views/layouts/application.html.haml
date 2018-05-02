@@ -10,7 +10,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %meta{ content: 'IE=edge,chrome=1', 'http-equiv' => 'X-UA-Compatible' }/
     %meta{ content: 'width=device-width, initial-scale=1, shrink-to-fit=no', name: 'viewport' }/
-  %body.skin-blue-light{ 'data-spy': 'scroll', 'data-target': '#scrollspy' }
+  %body.skin-blue-light{ 'data-spy': 'scroll',
+    'data-target': '#scrollspy', 'class': @show_panel_class }
   .wrapper.wstyle
     = render 'layouts/header'
     = render 'layouts/menu_sidebar'
