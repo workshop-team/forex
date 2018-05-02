@@ -21,7 +21,7 @@ module ForexServer
       @last_time += granularity_value
 
       puts "-- Call strategy: #{@name}"
-      @strategy_logic.call(self)
+      @strategy_logic.call
     end
 
     private
@@ -35,7 +35,7 @@ module ForexServer
       @granularity_name = db_result.fetch(:granularity_name, nil)
       @instrument_name = db_result.fetch(:instrument_name, nil)
       @units = db_result.fetch(:units, nil)
-      @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new
+      @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new(self)
       @class_name = db_result.fetch(:class_name, nil)
     end
 
