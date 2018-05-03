@@ -32,5 +32,6 @@ Granularity.find_or_create_by(name: 'W', value: 1.week.to_i, label: '1 week cand
 Granularity.find_or_create_by(name: 'M', value: 1.month.to_i, label: '1 month candlesticks, aligned to first day of the month')
 
 StrategyLogic.find_or_create_by(class_name: 'StrategyLogic1', label: 'Strategy Logic 1')
+StrategyLogic.find_or_create_by(class_name: 'ThreeDownOneUp', label: '3Down1Up')
 
 puts 'Seeds were added.'

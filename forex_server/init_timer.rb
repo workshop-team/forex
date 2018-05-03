@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ForexServer
-  class BeginnerTimer
+  class InitTimer
     WAIT = 10 # Time in seconds. Allows Oanda generate the newest data.
 
     def self.call(strategy)
