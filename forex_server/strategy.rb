@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'beginner_timer'
+require_relative 'init_timer'
+require_relative 'strategy_logic/strategy_logic1'
+require_relative 'strategy_logic/three_down_one_up'
 
 module ForexServer
   class Strategy
@@ -13,7 +15,7 @@ module ForexServer
     def initialize(db_result)
       define_fields(db_result)
 
-      @last_time = Time.at(BeginnerTimer.call(self))
+      @last_time = Time.at(InitTimer.call(self))
     end
 
     def call
@@ -21,7 +23,7 @@ module ForexServer
       @last_time += granularity_value
 
       puts "-- Call strategy: #{@name}"
-      @strategy_logic.call(self)
+      @strategy_logic.call
     end
 
     private
@@ -35,7 +37,7 @@ module ForexServer
       @granularity_name = db_result.fetch(:granularity_name, nil)
       @instrument_name = db_result.fetch(:instrument_name, nil)
       @units = db_result.fetch(:units, nil)
-      @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new
+      @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new(self)
       @class_name = db_result.fetch(:class_name, nil)
     end
 

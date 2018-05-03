@@ -19,6 +19,10 @@ class RequestsController < ApplicationController
     head :no_content
   end
 
+  def show_panel
+    session[:show_panel] = params[:state]
+  end
+
   private
 
   def notification_params
