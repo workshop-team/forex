@@ -24,6 +24,7 @@ module ForexServer
     end
 
     def sell?
+      # init_data if true # Will reset the data hash for new Order.
       false
     end
   end

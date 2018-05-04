@@ -21,7 +21,7 @@ module ForexServer
 
       puts "--- Run #{strategy.class_name} (#{strategy.name})"
 
-      @order = Order.where_strategy_id(strategy)
+      @order = Order.active_strategy(strategy)
       @data = StrategyLogicProvider.data(strategy)
 
       trade

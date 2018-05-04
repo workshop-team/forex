@@ -28,12 +28,6 @@ module ForexServer
       # Update Order record (save price_sell)
       update_order_record(strategy, response)
 
-      # Remove Strategy from FS
-      remove_strategy(strategy)
-
-      # Set strategy 'status' to 'finished' in DB.
-      status_to_finished(strategy)
-
       Logger.instance.call(
         "#{strategy.instrument_name.upcase} (#{strategy.name}) was sold", 'success'
       )
@@ -58,14 +52,6 @@ module ForexServer
 
     def update_order_record(strategy, response)
       Order.update(strategy, order_response_info(response))
-    end
-
-    def status_to_finished(strategy)
-      SqlManager.instance.call(StrategiesSql.update_to_finished, [strategy.id])
-    end
-
-    def remove_strategy(strategy)
-      Strategies.instance.delete(strategy.id)
     end
   end
 end

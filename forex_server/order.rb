@@ -24,8 +24,8 @@ module ForexServer
         )
       end
 
-      def where_strategy_id(strategy)
-        SqlManager.instance.call(OrdersSql.where_strategy_id, [strategy.id])
+      def active_strategy(strategy)
+        SqlManager.instance.call(OrdersSql.active_strategy, [strategy.id])
       end
     end
   end

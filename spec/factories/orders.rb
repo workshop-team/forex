@@ -10,5 +10,6 @@ FactoryBot.define do
     time_sell nil
     oanda_sell_order_id nil
     units 100
+    status 0
   end
 end
