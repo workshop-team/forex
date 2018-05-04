@@ -15,3 +15,15 @@ $(document).on('collapsed.pushMenu', function(){
 $(document).on('expanded.pushMenu', function(){
   Layout.showPanel(true)
 });
+$(document).ready(function() {
+  $.AdminLTE.layout.activate();
+});
+
+$(document).on('page:load', function() {
+  var o;
+  o = $.AdminLTE.options;
+  if (o.sidebarPushMenu) {
+    $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
+  }
+  $.AdminLTE.layout.activate();
+});
