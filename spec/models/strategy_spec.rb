@@ -8,7 +8,7 @@ RSpec.describe Strategy, type: :model do
   it { should validate_numericality_of(:units) }
 
   it { should have_many(:prices) }
-  it { should have_one(:order) }
+  it { should have_many(:orders) }
   it { should have_one(:strategy_logic_provider) }
   it { should belong_to(:strategy_logic) }
   it { should belong_to(:instrument) }

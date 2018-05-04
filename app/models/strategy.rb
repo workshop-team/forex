@@ -2,8 +2,8 @@
 
 class Strategy < ApplicationRecord
   has_many :prices, dependent: :destroy
-  has_one :order
-  has_one :strategy_logic_provider
+  has_many :orders, dependent: :destroy
+  has_one :strategy_logic_provider, dependent: :destroy
   belongs_to :instrument
   belongs_to :strategy_logic
   belongs_to :granularity
