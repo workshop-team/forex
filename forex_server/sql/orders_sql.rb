@@ -3,17 +3,10 @@
 module ForexServer
   class OrdersSql
     class << self
-      def count
-        <<-QUERY
-          SELECT COUNT(*) AS count FROM orders
-          WHERE strategy_id = $1
-        QUERY
-      end
-
-      def where_strategy_id
+      def active_strategy
         <<-QUERY
           SELECT * FROM orders
-          WHERE strategy_id = $1
+          WHERE strategy_id = $1 AND status = 0
         QUERY
       end
 
@@ -31,8 +24,9 @@ module ForexServer
           SET
           price_sell = $2,
           time_sell = $3,
-          oanda_sell_order_id = $4
-          WHERE strategy_id = $1
+          oanda_sell_order_id = $4,
+          status = 1
+          WHERE strategy_id = $1 AND status = 0
         QUERY
       end
     end
