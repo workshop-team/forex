@@ -10,12 +10,12 @@ module ForexServer
     def call(info, kind = 'info')
       current_time = Time.now
 
-      ForexServer::SqlManager.instance.call(
-        ForexServer::NotificationsSql.insert_notification,
+      result = SqlManager.instance.call(
+        NotificationsSql.insert_notification,
         [kind, info, current_time, current_time]
       )
 
-      ForexServer::LocalhostApi.instance.send_notification(info: info, kind: kind)
+      LocalhostApi.instance.send_notification(id: result[0]['id'])
     end
   end
 end

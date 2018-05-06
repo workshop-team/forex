@@ -6,6 +6,7 @@ module ForexServer
       <<-QUERY
         INSERT INTO notifications (kind, info, created_at, updated_at)
         VALUES($1, $2, $3, $4)
+        returning id
       QUERY
     end
   end

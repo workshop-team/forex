@@ -8,10 +8,10 @@ module ForexServer
     include Singleton
 
     def call(query, params = [])
-      con = ForexServer::Settings.db_connection
+      con = Settings.db_connection
       con.exec_params(query, params)
     rescue PG::Error => e
-      ForexServer::Logger.instance.call(e.message, 'error')
+      Logger.instance.call(e.message, 'error')
       puts e.message
       []
     ensure

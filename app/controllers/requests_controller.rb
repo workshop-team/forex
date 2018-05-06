@@ -5,16 +5,14 @@ class RequestsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def send_notification
-    return unless token_ok?
+    return unless token_ok? && !notification_params.empty?
 
-    if info_and_kind?
-      notification_row = render_to_string(
-        partial: '/notifications/notification',
-        locals: { notification: Notification.new(notification_params) }
-      )
+    notification_row = render_to_string(
+      partial: '/notifications/notification',
+      locals: { notification: Notification.find(notification_params[:id]) }
+    )
 
-      ActionCable.server.broadcast 'notifications_channel', notification_row: notification_row
-    end
+    ActionCable.server.broadcast 'notifications_channel', notification_row: notification_row
 
     head :no_content
   end
@@ -26,14 +24,10 @@ class RequestsController < ApplicationController
   private
 
   def notification_params
-    params.permit(:info, :kind)
+    params.permit(:id)
   end
 
   def token_ok?
     request.headers['X-AUTH-TOKEN'] == ENV['FOREX_SERVER_TOKEN']
-  end
-
-  def info_and_kind?
-    notification_params[:info].present? && notification_params[:kind].present?
   end
 end
