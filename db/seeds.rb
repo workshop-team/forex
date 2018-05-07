@@ -33,5 +33,6 @@ Granularity.find_or_create_by(name: 'M', value: 1.month.to_i, label: '1 month ca
 
 StrategyLogic.find_or_create_by(class_name: 'StrategyLogic1', label: 'Strategy Logic 1')
 StrategyLogic.find_or_create_by(class_name: 'ThreeDownOneUp', label: '3Down1Up')
+StrategyLogic.find_or_create_by(class_name: 'TwoUp', label: '2Up')
 
 puts 'Seeds were added.'
