@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-require 'singleton'
 require_relative 'sql/notifications_sql'
 
 module ForexServer
   class Logger
-    include Singleton
-
-    def call(info, kind = 'info')
+    def self.call(info, kind = 'info')
       current_time = Time.now
 
       result = SqlManager.instance.call(

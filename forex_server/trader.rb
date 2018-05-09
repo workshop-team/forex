@@ -14,7 +14,7 @@ module ForexServer
       # Save Order
       Order.insert(strategy, order_response_info(response))
 
-      Logger.instance.call(
+      Logger.call(
         "#{strategy.instrument_name.upcase} (#{strategy.name}) was bought", 'success'
       )
     end
@@ -28,7 +28,7 @@ module ForexServer
       # Update Order record (save price_sell)
       update_order_record(strategy, response)
 
-      Logger.instance.call(
+      Logger.call(
         "#{strategy.instrument_name.upcase} (#{strategy.name}) was sold", 'success'
       )
     end

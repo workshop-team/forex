@@ -8,7 +8,7 @@ module ForexServer
     def call
       # fetch from database commands like add/remove strategy, sell/buy instrument
       puts '-- Manage trading'
-      execute_commands(ForexServer::SqlManager.instance.call(ForexServer::CommandsSql.commands))
+      execute_commands(SqlManager.instance.call(CommandsSql.commands))
     end
 
     def execute_commands(commands)
@@ -20,14 +20,14 @@ module ForexServer
 
       notification = "Strategy >>> #{json(params)['name']} <<< added successfully"
       command_executor(command_id, notification) do
-        ForexServer::Strategies.instance.add(json(params)['id'])
+        Strategies.instance.add(json(params)['id'])
       end
     end
 
     def edit_strategy(_params, command_id)
       puts '--- Edit strategy'
 
-      ForexServer::SqlManager.instance.call(ForexServer::CommandsSql.update_execute, [command_id])
+      SqlManager.instance.call(CommandsSql.update_execute, [command_id])
     end
 
     def destroy_strategy(params, command_id)
@@ -35,14 +35,14 @@ module ForexServer
 
       notification = "Strategy >>> #{json(params)['name']} <<< deleted successfully"
       command_executor(command_id, notification, 'alert') do
-        ForexServer::Strategies.instance.delete(JSON.parse(params)['id'])
+        Strategies.instance.delete(JSON.parse(params)['id'])
       end
     end
 
     def command_executor(command_id, message, kind = 'info')
       yield
-      ForexServer::SqlManager.instance.call(ForexServer::CommandsSql.update_execute, [command_id])
-      ForexServer::Logger.instance.call(message, kind)
+      SqlManager.instance.call(CommandsSql.update_execute, [command_id])
+      Logger.call(message, kind)
     end
 
     def json(params)

@@ -13,11 +13,11 @@ require_relative 'api/localhost_api'
 require_relative 'api/oanda_api'
 
 #### Start ####
-# Forex Server is automative started with Rails. But in development it's better to run it using CLI.
+# Forex Server is automatic started with Rails in production. But in development you have to run it using CLI.
 # ruby forex_server/forex_daemon.rb run
 # ruby forex_server/forex_daemon.rb run | stop | start | status
 
-ForexServer::Logger.instance.call('+++ Forex Server started +++')
+ForexServer::Logger.call('+++ Forex Server started +++')
 
 manager = ForexServer::Manager.new
 

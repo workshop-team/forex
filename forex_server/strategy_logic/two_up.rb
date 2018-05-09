@@ -38,7 +38,7 @@ module ForexServer
     private
 
     def log_count_up
-      Logger.instance.call("(#{strategy.name}) :: Count up: #{data[:count_up]}")
+      Logger.call("(#{strategy.name}) :: Count up: #{data[:count_up]}")
     end
   end
 end

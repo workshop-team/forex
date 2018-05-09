@@ -48,7 +48,7 @@ module ForexServer
     private
 
     def log_count_down
-      Logger.instance.call("(#{strategy.name}) :: Count down: #{data[:count_down]}") # if data[:count_down].positive?
+      Logger.call("(#{strategy.name}) :: Count down: #{data[:count_down]}") # if data[:count_down].positive?
     end
   end
 end
