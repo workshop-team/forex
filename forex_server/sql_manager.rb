@@ -11,7 +11,7 @@ module ForexServer
       con = Settings.db_connection
       con.exec_params(query, params)
     rescue PG::Error => e
-      Logger.instance.call(e.message, 'error')
+      Logger.call(e.message, 'error')
       puts e.message
       []
     ensure

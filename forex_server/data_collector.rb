@@ -9,7 +9,7 @@ module ForexServer
       puts "-- Fetch and save instruments data from strategy #{@strategy.name}"
 
       fetch_last_price.tap do |last_price|
-        ForexServer::SqlManager.instance.call(ForexServer::PricesSql.insert_price, query_array(last_price))
+        SqlManager.instance.call(PricesSql.insert_price, query_array(last_price))
       end
     end
 
@@ -20,7 +20,7 @@ module ForexServer
 
       while fetch_data
         result =
-          ForexServer::OandaApi.instance.last_price(
+          OandaApi.instance.last_price(
             @strategy.instrument_name.upcase, count: 2, granularity: @strategy.granularity_name, smooth: true
           )
 
@@ -33,7 +33,7 @@ module ForexServer
 
     def fetch_data?(time)
       if price_exist? time
-        ForexServer::Logger.instance.call(
+        Logger.call(
           "Can\'t fetch data for #{@strategy.name}. Will try again in 5 seconds", 'alert'
         )
 
@@ -46,8 +46,8 @@ module ForexServer
     end
 
     def price_exist?(time)
-      ForexServer::SqlManager.instance.call(
-        ForexServer::PricesSql.count_prices, [@strategy.id, Time.at(time.to_i)]
+      SqlManager.instance.call(
+        PricesSql.count_prices, [@strategy.id, Time.at(time.to_i)]
       )[0]['count'].to_i == 1
     end
 
