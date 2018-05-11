@@ -1,0 +1,14 @@
+%h1= Order.model_name.human.pluralize
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th{ scope: 'col' }= Order.human_attribute_name :price_buy
+      %th{ scope: 'col' }= Order.human_attribute_name :price_sell
+      %th{ scope: 'col' }= t('pips')
+      %th{ scope: 'col' }= Order.human_attribute_name :units
+      %th{ scope: 'col' }= Order.human_attribute_name :pl
+      %th{ scope: 'col' }= Order.human_attribute_name :half_spread_cost
+      %th{ scope: 'col' }= Order.human_attribute_name :status
+  %tbody
+  = render orders

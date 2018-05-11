@@ -9,6 +9,8 @@ FactoryBot.define do
     price_sell nil
     time_sell nil
     oanda_sell_order_id nil
+    pl nil
+    half_spread_cost nil
     units 100
     status 0
   end

@@ -16,6 +16,9 @@ en:
       user:
         one: 'User'
         other: 'Users'
+      order:
+        one: 'Order'
+        other: 'Orders'
 
     attributes:
       strategy:
@@ -36,3 +39,12 @@ en:
       user:
         email: 'E-mail'
         role: 'Role'
+      order:
+        price_buy: 'Price (buy)'
+        price_sell: 'Price(sell)'
+        units: 'Units'
+        time_buy: 'Bought at'
+        time_sell: 'Sold at'
+        status: 'Status'
+        pl: 'P/L'
+        half_spread_cost: 'Half spread cost'

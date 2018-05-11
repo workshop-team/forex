@@ -20,7 +20,7 @@ module ForexServer
 
         SqlManager.instance.call(
           OrdersSql.update,
-          [strategy.id, sell_info[:price], time, sell_info[:order_id]]
+          [strategy.id, sell_info[:price], time, sell_info[:order_id], sell_info[:pl], sell_info[:half_spread_cost]]
         )
       end
 

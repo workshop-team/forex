@@ -42,7 +42,9 @@ module ForexServer
         order_id: response['orderID'],
         price: response['price'],
         time: response['time'],
-        units: response['units']
+        units: response['units'],
+        pl: response['pl'],
+        half_spread_cost: response['halfSpreadCost']
       }
     end
 
