@@ -11,4 +11,14 @@ module ApplicationHelper
       'alert-info'
     end
   end
+
+  def coloraize_number(value)
+    return unless value.present?
+
+    if value.negative?
+      content_tag :span, value, class: 'text-danger'
+    else
+      content_tag :span, value, class: 'text-success'
+    end
+  end
 end
