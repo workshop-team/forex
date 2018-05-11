@@ -25,6 +25,8 @@ module ForexServer
           price_sell = $2,
           time_sell = $3,
           oanda_sell_order_id = $4,
+          pl = $5,
+          half_spread_cost = $6,
           status = 1
           WHERE strategy_id = $1 AND status = 0
         QUERY
