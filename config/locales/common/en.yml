@@ -13,6 +13,7 @@ en:
   update: 'Update'
   all: 'All'
   auto: 'Auto'
+  pips: 'Pips'
 
   time:
     formats:

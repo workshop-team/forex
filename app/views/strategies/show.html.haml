@@ -22,3 +22,5 @@
 = link_to t('edit'), edit_strategy_path(@strategy)
 \|
 = link_to t('back'), strategies_path
+
+= render 'orders/orders_table', orders: @orders

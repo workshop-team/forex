@@ -8,6 +8,10 @@ class StrategiesController < ApplicationController
     @strategies = Strategy.includes(:instrument, :strategy_logic, :granularity).decorate
   end
 
+  def show
+    @orders = @strategy.orders.order(created_at: :desc).decorate
+  end
+
   def new
     @strategy = Strategy.new
   end
