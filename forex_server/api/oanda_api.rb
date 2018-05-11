@@ -33,6 +33,11 @@ module ForexServer
       prepare_call('post_body', endpoint, body)
     end
 
+    def account_summary
+      endpoint = "accounts/#{ENV['OANDA_ACCOUNT_ID']}/summary"
+      prepare_call('get', endpoint, nil)
+    end
+
     private
 
     def prepare_call(method, endpoint, params)
