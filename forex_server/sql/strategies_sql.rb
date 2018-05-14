@@ -19,8 +19,8 @@ module ForexServer
         strategies << 'WHERE s.id = $1'
       end
 
-      def strategies_with_status_created
-        strategies << 'WHERE status = 0'
+      def strategies_with_status_active
+        strategies << 'WHERE status = 1'
       end
 
       def update_to_finished

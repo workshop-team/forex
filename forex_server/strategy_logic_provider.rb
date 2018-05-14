@@ -26,6 +26,10 @@ module ForexServer
       def update(strategy, data)
         SqlManager.instance.call(StrategyLogicProvidersSql.update, [strategy.id, data.to_json])
       end
+
+      def delete(strategy_id)
+        SqlManager.instance.call(StrategyLogicProvidersSql.delete, [strategy_id])
+      end
     end
   end
 end

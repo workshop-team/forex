@@ -24,6 +24,12 @@ module ForexServer
           VALUES($1, $2, $3, $4)
         QUERY
       end
+
+      def delete
+        <<-QUERY
+          DELETE FROM strategy_logic_providers WHERE strategy_id = $1
+        QUERY
+      end
     end
   end
 end

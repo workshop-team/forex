@@ -39,6 +39,28 @@ module ForexServer
       end
     end
 
+    def update_status(params, command_id)
+      puts '--- Update status'
+
+      notification = "Status of strategy >>> #{json(params)['name']} <<< has been changed"
+      command_executor(command_id, notification) do
+        manage_status(params)
+      end
+    end
+
+    private
+
+    def manage_status(params)
+      strategy = json(params)
+
+      if strategy['status'] == 'activated'
+        StrategyLogicProvider.delete(strategy['id'])
+        Strategies.instance.add(strategy['id'])
+      end
+
+      Strategies.instance.delete(strategy['id']) if strategy['status'] == 'stopped'
+    end
+
     def command_executor(command_id, message, kind = 'info')
       yield
       SqlManager.instance.call(CommandsSql.update_execute, [command_id])
