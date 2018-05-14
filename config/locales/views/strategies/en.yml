@@ -1,0 +1,5 @@
+en:
+  strategies:
+    change_status:
+      message_of_changing_status: 'Status has been successfully changded'
+      message_of_changing_status_fail: "Status hasn't been changed"
