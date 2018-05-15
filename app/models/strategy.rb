@@ -11,5 +11,5 @@ class Strategy < ApplicationRecord
   validates :name, :status, presence: true
   validates :units, numericality: { allow_nil: true }
 
-  enum status: { created: 0, active: 1, finished: 2 }
+  enum status: { created: 0, activated: 1, stopped: 2 }
 end

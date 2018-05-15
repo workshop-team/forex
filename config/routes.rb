@@ -2,7 +2,12 @@
 
 Rails.application.routes.draw do
   root 'strategies#index'
-  resources :strategies
+  resources :strategies do
+    member do
+      get 'change_status/:status', action: 'change_status', as: :change_status
+    end
+  end
+
   resources :users, only: %i[index edit update]
 
   post 'requests/send_notification'

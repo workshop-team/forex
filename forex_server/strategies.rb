@@ -34,7 +34,7 @@ module ForexServer
 
     def init_data
       results = SqlManager.instance.call(
-        StrategiesSql.strategies_with_status_created
+        StrategiesSql.strategies_with_status_active
       )
 
       results.each { |result| @strategies << Strategy.new(result) }
