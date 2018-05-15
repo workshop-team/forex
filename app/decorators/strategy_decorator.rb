@@ -11,7 +11,7 @@ class StrategyDecorator < Draper::Decorator
     h.content_tag(:a, manager_label, href: h.change_status_strategy_path(id: object.id, status: object.status))
   end
 
-  def status
+  def status_label
     clazz = object.status == 'activated' ? 'text-success' : 'text-warning'
     h.content_tag :span, object.status, class: clazz
   end
