@@ -18,8 +18,7 @@ module ForexServer
     def add_strategy(params, command_id)
       puts '--- Add strategy'
 
-      notification = "Strategy >>> #{json(params)['name']} <<< added successfully"
-      command_executor(command_id, notification) do
+      command_executor(command_id, nil) do
         Strategies.instance.add(json(params)['id'])
       end
     end
@@ -33,9 +32,8 @@ module ForexServer
     def destroy_strategy(params, command_id)
       puts '--- Destroy strategy'
 
-      notification = "Strategy >>> #{json(params)['name']} <<< deleted successfully"
-      command_executor(command_id, notification, 'alert') do
-        Strategies.instance.delete(JSON.parse(params)['id'])
+      command_executor(command_id, nil) do
+        Strategies.instance.delete(json(params))
       end
     end
 
@@ -58,13 +56,13 @@ module ForexServer
         Strategies.instance.add(strategy['id'])
       end
 
-      Strategies.instance.delete(strategy['id']) if strategy['status'] == 'stopped'
+      Strategies.instance.delete(strategy) if strategy['status'] == 'stopped'
     end
 
-    def command_executor(command_id, message, kind = 'info')
+    def command_executor(command_id, message, kind: 'info')
       yield
       SqlManager.instance.call(CommandsSql.update_execute, [command_id])
-      Logger.call(message, kind)
+      Logger.call(message, kind) unless message.nil?
     end
 
     def json(params)
