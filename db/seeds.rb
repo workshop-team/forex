@@ -5,6 +5,8 @@ Instrument.find_or_create_by(name: 'eur_jpy', label: 'EUR/JPY')
 Instrument.find_or_create_by(name: 'gbp_usd', label: 'GBP/USD')
 Instrument.find_or_create_by(name: 'aud_usd', label: 'AUD/USD')
 Instrument.find_or_create_by(name: 'nzd_usd', label: 'NZD/USD')
+Instrument.find_or_create_by(name: 'usd_jpy', label: 'USD/JPY')
+Instrument.find_or_create_by(name: 'usd_sgd', label: 'USD/SGD')
 
 # TODO: Allow App trading on shorter granularity if needed
 # Granularity.find_or_create_by(name: 'S10', value: 10.second.to_i, label: '10 second candlesticks, minute alignment')
