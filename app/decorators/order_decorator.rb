@@ -3,6 +3,10 @@
 class OrderDecorator < Draper::Decorator
   delegate_all
 
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
+
   def pl
     h.coloraize_number(object.pl.round(2)) if object.pl.present?
   end
