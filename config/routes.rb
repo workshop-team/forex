@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     member do
       get 'change_status/:status', action: 'change_status', as: :change_status
     end
+
+    get 'page/:page', action: :show, on: :member
   end
 
   resources :users, only: %i[index edit update]
