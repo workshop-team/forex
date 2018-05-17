@@ -9,7 +9,7 @@ class StrategiesController < ApplicationController
   end
 
   def show
-    @orders = @strategy.orders.order(created_at: :desc).decorate
+    @orders = @strategy.orders.order(created_at: :desc).page(params[:page]).decorate
   end
 
   def new

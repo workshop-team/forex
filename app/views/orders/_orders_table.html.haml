@@ -12,3 +12,5 @@
       %th{ scope: 'col' }= Order.human_attribute_name :status
   %tbody
   = render orders
+
+= paginate orders
