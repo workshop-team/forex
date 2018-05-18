@@ -21,6 +21,20 @@ class RequestsController < ApplicationController
     session[:show_panel] = params[:state]
   end
 
+  def chart_data
+    render(
+      json: Price.where(strategy_id: params[:strategy_id]).last(100).map do |price|
+        PricesService.format_chart_data(price)
+      end
+    )
+  end
+
+  def last_chart_data
+    render(
+      json: PricesService.format_chart_data(Price.where(strategy_id: params[:strategy_id]).last)
+    )
+  end
+
   private
 
   def notification_params
