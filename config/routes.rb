@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   post 'requests/send_notification'
   post 'requests/show_panel'
+  get 'requests/chart_data/:strategy_id', to: 'requests#chart_data'
+  get 'requests/last_chart_data/:strategy_id', to: 'requests#last_chart_data'
 
   get 'home' => 'pages#home'
 
