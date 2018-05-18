@@ -23,4 +23,6 @@
 \|
 = link_to t('back'), strategies_path
 
+#container{ 'data-strategy_id': @strategy.id }
+
 = render 'orders/orders_table', orders: @orders

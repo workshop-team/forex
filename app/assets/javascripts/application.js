@@ -14,5 +14,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require bootstrap-sprockets
-//= require adminlte/app.min.js
+//= require adminlte/app.min
+//= require highcharts/stock/highstock
+//= require highcharts/stock/modules/exporting
 //= require_tree .
