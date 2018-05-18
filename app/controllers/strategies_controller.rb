@@ -20,7 +20,6 @@ class StrategiesController < ApplicationController
     @strategy = Strategy.new(strategy_params)
 
     if @strategy.save
-      Command.create(name: 'add_strategy', params: @strategy)
       redirect_to @strategy, notice: t('message_of_addition')
     else
       render :new
