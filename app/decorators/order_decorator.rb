@@ -16,6 +16,16 @@ class OrderDecorator < Draper::Decorator
   end
 
   def pips
-    object.price_sell.present? ? h.coloraize_number((object.price_sell - object.price_buy) * 10_000) : 0
+    object.price_sell.present? ? h.coloraize_number((object.price_sell - object.price_buy) * pip_size) : 0
+  end
+
+  private
+
+  def instrument
+    object.strategy.instrument.name
+  end
+
+  def pip_size
+    instrument == 'usd_jpy' ? 100 : 10_000
   end
 end
