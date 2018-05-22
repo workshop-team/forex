@@ -19,6 +19,9 @@ en:
       order:
         one: 'Order'
         other: 'Orders'
+      command:
+        one: 'Command'
+        other: 'Commands'
 
     attributes:
       strategy:
@@ -48,3 +51,7 @@ en:
         status: 'Status'
         pl: 'P/L'
         half_spread_cost: 'Half spread cost'
+      command:
+        name: 'Name'
+        params: 'Parameteres'
+        execute: 'Executed?'
