@@ -1,0 +1,7 @@
+%tr
+  %td= command.created_at.to_s(:long)
+  %td= command.name
+  %td
+    %pre
+      %code= command.params
+  %td= command.execute

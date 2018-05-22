@@ -1,0 +1,11 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th{ scope: 'col' }= t('date')
+      %th{ scope: 'col' }= Command.human_attribute_name(:name)
+      %th{ scope: 'col' }= Command.human_attribute_name(:params)
+      %th{ scope: 'col' }= Command.human_attribute_name(:execute)
+  %tbody
+    = render @commands
+
+= paginate @commands
