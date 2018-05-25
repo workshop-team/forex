@@ -31,11 +31,11 @@ module ForexServer
     end
 
     def stop_loss?
-      @strategy.stop_loss.nil? ? false : @current_pips < @strategy.stop_loss
+      @strategy.stop_loss.nil? ? false : @current_pips < @strategy.stop_loss.to_i
     end
 
     def take_profit?
-      @strategy.take_profit.nil? ? false : @current_pips > @strategy.take_profit
+      @strategy.take_profit.nil? ? false : @current_pips > @strategy.take_profit.to_i
     end
 
     def pips
