@@ -4,6 +4,7 @@ require_relative 'init_timer'
 require_relative 'strategy_logic/strategy_logic1'
 require_relative 'strategy_logic/three_down_one_up'
 require_relative 'strategy_logic/two_up'
+require_relative 'stop_trader'
 
 module ForexServer
   class Strategy
@@ -20,11 +21,13 @@ module ForexServer
     end
 
     def call
-      return unless refresh_strategy? && valid?
+      @order = Order.active_strategy(self)
+
+      return unless valid? && !stop_trading? && execute_strategy?
       @last_time += granularity_value
 
       puts "-- Call strategy: #{@name}"
-      @strategy_logic.call
+      @strategy_logic.call(@order)
     end
 
     private
@@ -42,12 +45,16 @@ module ForexServer
       @class_name = db_result.fetch(:class_name, nil)
     end
 
-    def refresh_strategy?
+    def execute_strategy?
       @last_time <= Time.now
     end
 
     def valid?
       !@id.nil? && !@name.nil? && !@granularity_value.nil? && !@instrument_name.nil? && !@strategy_logic.nil?
+    end
+
+    def stop_trading?
+      @order.count == 1 ? StopTrader.instance.call(self, @order) : false
     end
   end
 end
