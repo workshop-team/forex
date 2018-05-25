@@ -9,7 +9,7 @@ class Strategy < ApplicationRecord
   belongs_to :granularity
 
   validates :name, :status, presence: true
-  validates :units, numericality: { allow_nil: true }
+  validates :units, :stop_loss, :take_profit, numericality: { allow_nil: true }
 
   enum status: { created: 0, activated: 1, stopped: 2 }
 end

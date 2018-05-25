@@ -16,6 +16,14 @@ class StrategyDecorator < Draper::Decorator
     h.content_tag :span, object.status, class: clazz
   end
 
+  def stop_loss
+    stop_trade(object.stop_loss)
+  end
+
+  def take_profit
+    stop_trade(object.take_profit)
+  end
+
   private
 
   def manager_label
@@ -27,5 +35,9 @@ class StrategyDecorator < Draper::Decorator
     when 'stopped'
       'Restart'
     end
+  end
+
+  def stop_trade(action)
+    action.present? ? action : h.content_tag(:span, h.t('not_set'), class: 'text-warning')
   end
 end

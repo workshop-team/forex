@@ -5,6 +5,8 @@
     = f.association :instrument, label_method: :label
     = f.association :strategy_logic, label_method: :label
     = f.input :units
+    = f.input :stop_loss
+    = f.input :take_profit
 
   .form-actions
     = f.button :submit

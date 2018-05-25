@@ -7,6 +7,8 @@ FactoryBot.define do
     strategy_logic
     granularity
     units 100
+    stop_loss nil
+    take_profit nil
     status 0
   end
 end

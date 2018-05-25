@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_11_090722) do
+ActiveRecord::Schema.define(version: 2018_05_25_190252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2018_05_11_090722) do
     t.bigint "granularity_id"
     t.integer "units"
     t.integer "status", default: 0, null: false
+    t.integer "stop_loss"
+    t.integer "take_profit"
     t.index ["granularity_id"], name: "index_strategies_on_granularity_id"
     t.index ["instrument_id"], name: "index_strategies_on_instrument_id"
     t.index ["strategy_logic_id"], name: "index_strategies_on_strategy_logic_id"

@@ -16,6 +16,14 @@
   = @strategy.units
 
 %p
+  %b= Strategy.human_attribute_name :stop_loss
+  = @strategy.stop_loss
+
+%p
+  %b= Strategy.human_attribute_name :take_profit
+  = @strategy.take_profit
+
+%p
   %b= Strategy.human_attribute_name :status
   = @strategy.status_label
 
