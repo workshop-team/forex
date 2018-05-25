@@ -11,6 +11,7 @@ module ForexServer
     attr_reader(
       :id, :name, :granularity_value, :instrument_name,
       :strategy_logic, :class_name, :granularity_name, :units,
+      :stop_loss, :take_profit,
       :last_time
     )
 
@@ -41,8 +42,18 @@ module ForexServer
       @granularity_name = db_result.fetch(:granularity_name, nil)
       @instrument_name = db_result.fetch(:instrument_name, nil)
       @units = db_result.fetch(:units, nil)
+      define_fields_strategy_logic(db_result)
+      define_fields_stop_trade(db_result)
+    end
+
+    def define_fields_strategy_logic(db_result)
       @strategy_logic = Object.const_get("ForexServer::#{db_result[:class_name]}").new(self)
       @class_name = db_result.fetch(:class_name, nil)
+    end
+
+    def define_fields_stop_trade(db_result)
+      @stop_loss = db_result.fetch(:stop_loss)
+      @take_profit = db_result.fetch(:take_profit)
     end
 
     def execute_strategy?

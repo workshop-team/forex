@@ -6,9 +6,6 @@ module ForexServer
   class StopTrader
     include Singleton
 
-    STOP_LOSS = -20
-    TAKE_PROFIT = 20
-
     def call(strategy, order)
       @strategy = strategy
       @order = order
@@ -34,11 +31,11 @@ module ForexServer
     end
 
     def stop_loss?
-      @current_pips < STOP_LOSS
+      @strategy.stop_loss.nil? ? false : @current_pips < @strategy.stop_loss
     end
 
     def take_profit?
-      @current_pips > TAKE_PROFIT
+      @strategy.take_profit.nil? ? false : @current_pips > @strategy.take_profit
     end
 
     def pips
