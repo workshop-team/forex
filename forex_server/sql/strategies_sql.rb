@@ -7,7 +7,7 @@ module ForexServer
         <<-QUERY
           SELECT s.id, s.name AS strategy_name, g.value, s.instrument_id,
           sl.class_name , i.name AS instrument_name,
-          g.name AS granularity_name, s.units
+          g.name AS granularity_name, s.units, s.stop_loss, s.take_profit
           FROM strategies AS s
           JOIN strategy_logics AS sl ON sl.id = s.strategy_logic_id
           JOIN instruments AS i ON i.id = s.instrument_id

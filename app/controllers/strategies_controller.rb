@@ -59,6 +59,8 @@ class StrategiesController < ApplicationController
   end
 
   def strategy_params
-    params.require(:strategy).permit(:name, :instrument_id, :strategy_logic_id, :granularity_id, :units)
+    params.require(:strategy).permit(
+      :name, :instrument_id, :strategy_logic_id, :granularity_id, :units, :stop_loss, :take_profit
+    )
   end
 end

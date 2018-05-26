@@ -29,6 +29,8 @@ en:
         granularity: 'Granularity'
         units: 'Units'
         status: 'Status'
+        stop_loss: 'Stop Loss'
+        take_profit: 'Take Profit'
       instrument:
         name: 'Name'
         label: 'Label'

@@ -9,6 +9,7 @@ require_relative 'functions/candel'
 module ForexServer
   class StrategyLogic
     attr_accessor :strategy, :last_price, :data
+    attr_reader :trader
 
     def initialize(strategy)
       @trader = Trader.new
@@ -16,22 +17,27 @@ module ForexServer
       @strategy = strategy
     end
 
-    def call
-      @last_price = @data_collector.call(strategy)
+    def call(order)
+      @order = order
 
       puts "--- Run #{strategy.class_name} (#{strategy.name})"
 
-      @order = Order.active_strategy(strategy)
-      @data = StrategyLogicProvider.data(strategy)
+      @last_price = @data_collector.call(strategy)
 
-      trade
-
-      StrategyLogicProvider.update(strategy, @data)
+      execute_trade { trade }
     end
+
+    private
 
     def trade
       @trader.buy(strategy) if !order_exist? && buy?
       @trader.sell(strategy, @order) if order_exist? && sell?
+    end
+
+    def execute_trade
+      @data = StrategyLogicProvider.data(strategy)
+      yield
+      StrategyLogicProvider.update(strategy, @data)
     end
 
     def order_exist?

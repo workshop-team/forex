@@ -15,6 +15,7 @@ en:
   auto: 'Auto'
   pips: 'Pips'
   date: 'Date'
+  not_set: 'not set'
 
   time:
     formats:

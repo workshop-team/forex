@@ -20,7 +20,7 @@ module ForexServer
 
       while fetch_data
         result =
-          OandaApi.instance.last_price(
+          OandaApi.instance.last_avg_price(
             @strategy.instrument_name.upcase, count: 2, granularity: @strategy.granularity_name, smooth: true
           )
 

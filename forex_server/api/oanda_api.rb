@@ -15,8 +15,14 @@ module ForexServer
       'Accept-Datetime-Format': 'UNIX'
     }.freeze
 
-    def last_price(instrument, params = { count: 1, granularity: 'S5', smooth: true })
-      endpoint = "instruments/#{instrument}/candles"
+    def last_avg_price(instrument, params = { count: 1, granularity: 'S5', smooth: true })
+      endpoint = "instruments/#{instrument.upcase}/candles"
+      prepare_call('get', endpoint, params)
+    end
+
+    def last_current_price(instrument)
+      endpoint = "accounts/#{ENV['OANDA_ACCOUNT_ID']}/pricing"
+      params = { instruments: instrument.upcase }
       prepare_call('get', endpoint, params)
     end
 

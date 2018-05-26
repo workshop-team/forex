@@ -6,8 +6,8 @@ module ForexServer
 
     def self.call(strategy)
       result =
-        ForexServer::OandaApi.instance.last_price(
-          strategy.instrument_name.upcase, count: 1, granularity: strategy.granularity_name
+        ForexServer::OandaApi.instance.last_avg_price(
+          strategy.instrument_name, count: 1, granularity: strategy.granularity_name
         )
 
       result = JSON.parse(result)
