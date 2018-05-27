@@ -93,10 +93,10 @@ ActiveRecord::Schema.define(version: 2018_05_25_190252) do
   end
 
   create_table "strategy_logic_providers", force: :cascade do |t|
+    t.bigint "strategy_id"
     t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "strategy_id"
     t.index ["strategy_id"], name: "index_strategy_logic_providers_on_strategy_id"
   end
 
