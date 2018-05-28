@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'singleton'
+require_relative '../lib/pips'
 
 module ForexServer
   class StopTrader
@@ -12,22 +13,20 @@ module ForexServer
 
       @last_current_price = oanda_last_bid_price
       @buy_price = @order[0]['price_buy'].to_f
-      @current_pips = pips
+      @current_pips = Forex::Pips.calculate(@strategy.instrument_name, @buy_price, @last_current_price)
 
-      to_be_or_not_to_be?
+      sell_or_not_sell?
     end
 
     private
 
-    def to_be_or_not_to_be?
-      if stop_loss? || take_profit?
-        @strategy.strategy_logic.trader.sell(@strategy, @order)
-        StrategyLogicProvider.delete(@strategy.id)
+    def sell_or_not_sell?
+      return false unless stop_loss? || take_profit?
 
-        true
-      else
-        false
-      end
+      @strategy.strategy_logic.trader.sell(@strategy, @order)
+      StrategyLogicProvider.delete(@strategy.id)
+
+      true
     end
 
     def stop_loss?
@@ -36,11 +35,6 @@ module ForexServer
 
     def take_profit?
       @strategy.take_profit.nil? ? false : @current_pips > @strategy.take_profit.to_i
-    end
-
-    def pips
-      instrument = @strategy.instrument_name == 'usd_jpy' ? 100 : 10_000
-      (@last_current_price - @buy_price) * instrument
     end
 
     def oanda_last_bid_price
