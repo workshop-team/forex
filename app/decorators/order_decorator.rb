@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require Rails.root.join('lib', 'pips')
+
 class OrderDecorator < Draper::Decorator
   delegate_all
 
@@ -16,16 +18,16 @@ class OrderDecorator < Draper::Decorator
   end
 
   def pips
-    object.price_sell.present? ? h.coloraize_number((object.price_sell - object.price_buy) * pip_size) : 0
+    return 0 unless object.price_sell.present?
+
+    h.coloraize_number(
+      Forex::Pips.calculate(object.strategy.instrument.name, object.price_buy, object.price_sell)
+    )
   end
 
   private
 
   def instrument
     object.strategy.instrument.name
-  end
-
-  def pip_size
-    instrument == 'usd_jpy' ? 100 : 10_000
   end
 end
