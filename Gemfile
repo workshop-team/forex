@@ -37,6 +37,7 @@ group :development, :test do
   gem 'haml_lint', '~> 0.27.0', require: false
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.7'
+  gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
 end
 
