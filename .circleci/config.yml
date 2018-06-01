@@ -8,15 +8,14 @@ jobs:
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          DEVISE_SECRET: 'bd53668480d69e85aad94c1dde6516f980ae530a246d75b667197273939ff31c01ef7845369b177c5c763f217a0a704d20e4ceaffe4264e97e867356fef9096d'
+          SECRET_KEY_BASE: '93b266abca09ea94502b10cd23c9c7c4ecd31d3ad155f9fc1c227348aadaecf9bb802877a1490a4426e871629386fd69a6c091fcaa2380b4f3f97beeef39128d'
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:10.4
-
-    environment:
-      DEVISE_SECRET: 'bd53668480d69e85aad94c1dde6516f980ae530a246d75b667197273939ff31c01ef7845369b177c5c763f217a0a704d20e4ceaffe4264e97e867356fef9096d'
-      SECRET_KEY_BASE: '93b266abca09ea94502b10cd23c9c7c4ecd31d3ad155f9fc1c227348aadaecf9bb802877a1490a4426e871629386fd69a6c091fcaa2380b4f3f97beeef39128d'
 
     working_directory: ~/repo
 
