@@ -37,6 +37,7 @@ group :development, :test do
   gem 'haml_lint', '~> 0.27.0', require: false
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.7'
+  gem 'simplecov', require: false
 end
 
 group :test do
@@ -53,6 +54,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.3.1'
   gem 'capistrano-rvm', '~> 0.1.2'
   gem 'capistrano-scm-gitcopy', '~> 0.1.5'
+  gem 'guard-rspec', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit', require: false
   gem 'spring'
