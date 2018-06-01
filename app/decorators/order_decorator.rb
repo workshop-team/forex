@@ -21,7 +21,7 @@ class OrderDecorator < Draper::Decorator
     return 0 unless object.price_sell.present?
 
     h.coloraize_number(
-      Forex::Pips.calculate(object.strategy.instrument.name, object.price_buy, object.price_sell)
+      Forex::Pips.calculate(instrument, object.price_buy, object.price_sell)
     )
   end
 
