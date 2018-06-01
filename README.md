@@ -1,4 +1,5 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/541a8d7ec8cb6254e8f5/maintainability)](https://codeclimate.com/github/workshop-team/forex/maintainability)
+[![CircleCI](https://circleci.com/gh/workshop-team/forex.svg?style=svg)](https://circleci.com/gh/workshop-team/forex)
 
 # README
 
