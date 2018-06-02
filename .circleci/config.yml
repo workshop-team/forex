@@ -72,7 +72,9 @@ jobs:
                             --format progress \
                             $TEST_FILES
 
-      - run: ./cc-test-reporter after-build --exit-code $EXIT_CODE
+      - run: ./cc-test-reporter format-coverage --output "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
+      - run: ./cc-test-reporter upload-coverage
+
 
       # collect reports
       - store_test_results:
