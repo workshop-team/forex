@@ -52,6 +52,12 @@ jobs:
       # Database setup
       - run: bundle exec rake db:setup
 
+      - run:
+        name: Setup Code Climate test-reporter
+        command: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+
       # run tests!
       - run:
           name: run tests
@@ -64,6 +70,9 @@ jobs:
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
                             $TEST_FILES
+
+      # Code Climate coverage, split for parallel nodes
+      - run: ./cc-test-reporter format-coverage --output "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
 
       # collect reports
       - store_test_results:
