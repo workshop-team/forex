@@ -29,7 +29,7 @@ class StrategiesController < ApplicationController
   def update
     if @strategy.update(strategy_params)
       Command.create(name: 'edit_strategy', params: @strategy)
-      redirect_to @strategy, notice: t('message_of_modification')
+      redirect_to strategy_path(@strategy), notice: t('message_of_modification')
     else
       render :edit
     end
