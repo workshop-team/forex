@@ -22,4 +22,11 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe 'PUT #update' do
+    it 'returns http redirect status' do
+      put :update, params: { id: guest_user.id, user: { role: 'admin' } }
+      expect(response).to have_http_status(302)
+    end
+  end
 end
