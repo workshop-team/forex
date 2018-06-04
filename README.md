@@ -1,5 +1,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/541a8d7ec8cb6254e8f5/maintainability)](https://codeclimate.com/github/workshop-team/forex/maintainability)
-[![CircleCI](https://circleci.com/gh/workshop-team/forex.svg?style=shield)](https://circleci.com/gh/workshop-team/forex)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/541a8d7ec8cb6254e8f5/test_coverage)](https://codeclimate.com/github/workshop-team/forex/test_coverage)
+[![Build Status](https://travis-ci.com/workshop-team/forex.svg?branch=master)](https://travis-ci.com/workshop-team/forex)
 
 # README
 
