@@ -6,6 +6,7 @@ RSpec.describe StrategiesController, type: :controller do
   render_views
   let(:strategy) { create(:strategy) }
   let(:user) { create(:user) }
+  let(:strategy_hash) { attributes_for(:strategy) }
 
   before { sign_in user }
 
@@ -45,6 +46,27 @@ RSpec.describe StrategiesController, type: :controller do
     it 'returns http success' do
       get :edit, params: { id: strategy }
       expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'POST #create' do
+    it 'returns http success' do
+      post :create, params: { strategy: strategy_hash }
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'PUT #update' do
+    it 'returns http redirect' do
+      put :update, params: { id: strategy.id, strategy: { name: 'updated_name' } }
+      expect(response).to have_http_status(302)
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'returns http redirect' do
+      delete :destroy, params: { id: strategy.id }
+      expect(response).to have_http_status(302)
     end
   end
 end
